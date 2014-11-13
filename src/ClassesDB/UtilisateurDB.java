@@ -96,7 +96,32 @@ public class UtilisateurDB extends Utilisateur implements CRUD {
     /**
     * récupération des données d'un utilisateur sur base de son pseudo
     * @throws Exception code inconnu
-    
+    */
+    public void read() throws Exception
+    {
+    	String query = "SELECT * FROM UTILISATEUR WHERE PSEUDO=?";
+        CallableStatement cstmt=null;
+        try
+        {
+        	cstmt = dbConnect.prepareCall(query);
+        }
+        catch(Exception e)
+        {
+            throw new Exception("Erreur lors de la lecture"+e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+               cstmt.close();
+            }
+            catch (Exception e)
+            {
+                
+            }
+        }
+    }
+    /*
     public void read() throws Exception
     {
         String query = "SELECT * FROM UTILISATEUR WHERE PSEUDO=?";
