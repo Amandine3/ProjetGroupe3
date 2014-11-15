@@ -1,5 +1,4 @@
 package ClassesDB;
-import java.util.*;
 import java.sql.*;
 
 /**
@@ -7,7 +6,8 @@ import java.sql.*;
  * @author Amandine Vandevoir & Aurélien Vandaele
  * @see Utilisateur
  */
-public class UtilisateurDB extends Utilisateur implements CRUD {
+public class UtilisateurDB extends Utilisateur implements CRUD 
+{
 
     /**
     *Connexion à la base de données partagée entre toutes les instances(statique)
@@ -100,10 +100,20 @@ public class UtilisateurDB extends Utilisateur implements CRUD {
     public void read() throws Exception
     {
     	String query = "SELECT * FROM UTILISATEUR WHERE PSEUDO=?";
-        CallableStatement cstmt=null;
+        PreparedStatement cstmt=null;
         try
         {
-        	cstmt = dbConnect.prepareCall(query);
+        	cstmt = dbConnect.prepareStatement(query);
+        	cstmt.setString(1,this.pseudo);
+        	ResultSet rs=cstmt.executeQuery(query);
+        	while(rs.next())
+        	{
+        		this.motdepasse=rs.getString("motdepasse");
+        		this.nom=rs.getString("nom");
+        		this.prenom=rs.getString("prenom");
+        		this.numgsm=rs.getString("numgsm");
+        	}
+        
         }
         catch(Exception e)
         {
@@ -121,48 +131,6 @@ public class UtilisateurDB extends Utilisateur implements CRUD {
             }
         }
     }
-    /*
-    public void read() throws Exception
-    {
-        String query = "SELECT * FROM UTILISATEUR WHERE PSEUDO=?";
-        CallableStatement cstmt=null;
-        try
-        {
-             cstmt = dbConnect.prepareCall(query);
-             cstmt.registerOutParameter(1,oracle.jdbc.OracleTypes.CURSOR);
-             cstmt.setInt(2,id_client);
-	         cstmt.executeQuery();
-             ResultSet rs=(ResultSet)cstmt.getObject(1);
-             if(rs.next())
-             {
-	     	this.nom=rs.getString("NOM");
-	     	this.prenom=rs.getString("PRENOM");
-	     	this.adresse=rs.getString("ADRESSE");
-                this.npostal=rs.getString("NPOSTAL");
-	     	this.localite=rs.getString("LOCALITE");
-             }
-	     else
-             { 
-	         throw new Exception("Code inconnu");
-	     }
-        }
-        catch(Exception e)
-        {
-            throw new Exception("Erreur lors de la lecture"+e.getMessage());
-        }
-        finally
-        {
-            try
-            {
-               cstmt.close();
-            }
-            catch (Exception e)
-            {
-                
-            }
-        }
-     }
-    */
     
     /**
     * mise à jour des données de l'utilisateur sur base de son pseudo
@@ -170,13 +138,12 @@ public class UtilisateurDB extends Utilisateur implements CRUD {
     */
      public void update() throws Exception
      {
-         CallableStatement cstmt=null;
+          CallableStatement cstmt=null;
           try
           {
             
              String query = "call updateUtilisateur(?,?,?,?,?)";
              cstmt=dbConnect.prepareCall(query);
-             PreparedStatement pstm = dbConnect.prepareStatement(query);
              cstmt.setString(1,pseudo);
              cstmt.setString(2,motdepasse);
              cstmt.setString(3,nom);
@@ -217,7 +184,7 @@ public class UtilisateurDB extends Utilisateur implements CRUD {
           }
           catch(Exception e)
           {
-                    throw new Exception("Erreur lors de la suppression"+e.getMessage());
+              throw new Exception("Erreur lors de la suppression"+e.getMessage());
           }
           finally
           {
@@ -231,6 +198,5 @@ public class UtilisateurDB extends Utilisateur implements CRUD {
               }
            }
      }
-
-   
+  
 }
