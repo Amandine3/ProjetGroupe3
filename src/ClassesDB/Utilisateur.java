@@ -47,7 +47,7 @@ public class Utilisateur
     
     /**
      * setter pseudo
-     * @param id_client identifiant du client
+     * @param pseudo de l'utilisateur
      */
     public void setPseudo(String pseudo)
     {
