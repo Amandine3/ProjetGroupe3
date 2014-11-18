@@ -4,23 +4,22 @@ import java.sql.Connection;
 
 
 /**
- * Classe RoomDB (classe de mappage poo-relationnel Room)
+ * Classe UtilisateurRoomDB (classe de mappage poo-relationnel UtilisateurRoom)
  * @author Amandine Vandevoir & Aurélien Vandaele
- * @see Room
+ * @see UtilisateurRoom
  */
 
-public class RoomDB extends Room implements CRUD
-{
+public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 	
     /**
     *Connexion à la base de données partagée entre toutes les instances(statique)
     */
     protected static Connection dbConnect=null;
-    
-    
+
+
 	/**
 	* méthode statique permettant de partager la connexion entre toutes les instances de
-	* RoomDB
+	* UtilisateurRoomDB
 	* @param nouvelledbConnect connexion à la base de données
 	*/
 	public static void setConnection(Connection nouvelledbConnect)
@@ -28,30 +27,43 @@ public class RoomDB extends Room implements CRUD
 	    dbConnect=nouvelledbConnect;
 	}
 	
-	
+    
    /**
    * constructeur par défaut
    */
-	public RoomDB()
+	public UtilisateurRoomDB()
 	{
 		
 	}
-	public RoomDB(String createur){
-		super(createur);
-	}
-	public RoomDB(int idRoom, String createur){
-		super(idRoom, createur);
-	}
+	
+	/**
+	* enregistrement d'un nouvel utilisateurRoom dans la base de données
+	* @throws Exception erreur lors de la création
+	*/
 	public void create(){
 		
 	}
+	
+	/**
+	* récupération des données d'un utilisateurRoom sur base de son 
+	* @throws Exception code inconnu
+	*/
 	public void read(){
 		
 	}
+	
+	/**
+	 * Méthode update non nécessaire (mais ici car implements CRUD)
+	 */
 	public void update()
 	{
 		// pas utilisable dans le cadre de cette application
 	}
+	
+    /**
+     * suppression de l'utilisateurroom sur base de son 
+     * @throws Exception erreur lors de la suppression
+     */
 	public void delete(){
 		
 	}

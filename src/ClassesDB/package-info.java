@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author Amandine
- *
- */
-package ClassesDB;

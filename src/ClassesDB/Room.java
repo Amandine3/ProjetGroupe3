@@ -1,15 +1,23 @@
 package ClassesDB;
 
-public class Room {
+/**
+ * Classe Room
+ * @author Amandine Vandevoir & Aurélien Vandaele
+ */
+
+public class Room
+{
 	
 	/**
 	 * L'identifiant de la room
 	 */
 	private int idRoom;
+	
 	/**
 	 * Le pseudo du créateur
 	 */
 	private String createur;
+	
 	
 	/**
 	 * Constructeur par défaut
@@ -67,4 +75,15 @@ public class Room {
 	public void setIdRoom(int idRoom){
 		this.idRoom=idRoom;
 	}
+
+	/**
+	* méthode toString
+	* @return informations complètes de la room
+	*/
+	@Override
+	public String toString() {
+		return "Room [idRoom=" + idRoom + ", createur=" + createur + "]";
+	}
+	
+	
 }

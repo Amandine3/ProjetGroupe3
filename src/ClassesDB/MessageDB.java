@@ -8,7 +8,7 @@ import java.sql.*;
  * @see Message
  */
 
-// ATTENTION Message & MessageDB A REVOIR !!!
+// ATTENTION MessageDB A REVOIR !!! (CREATE)
 public class MessageDB extends Message implements CRUD
 {
     /**
@@ -72,13 +72,17 @@ public class MessageDB extends Message implements CRUD
             dbConnect=nouvelledbConnect;
         }
         
+        /**
+         * enregistrement d'un nouveau message dans la base de données
+         * @throws Exception erreur lors de la création
+         */
         public void create() throws Exception
         {
             CallableStatement cstmt=null;
             try
             {          
-                 String query="call createMessage(?,?,?,?)"; 
-    	     cstmt = dbConnect.prepareCall(query);
+                 String query="call createMessage(?,?,?)"; 
+                 cstmt = dbConnect.prepareCall(query);
     	     /*CREATE OR REPLACE
 
     	     PROCEDURE createMessage (pseudoa varchar2, idrooma number, messagea varchar2) as
@@ -111,13 +115,82 @@ public class MessageDB extends Message implements CRUD
                 }
             }
         }
-    	public void read(){
-    		
+        
+        /**
+         * récupération des données d'un message sur base de son identifiant
+         * @throws Exception code inconnu
+         */
+    	public void read() throws Exception
+    	{
+    		String query = "SELECT * FROM MESSAGE WHERE IDMESSAGE=?";
+            PreparedStatement cstmt=null;
+            try
+            {
+            	cstmt = dbConnect.prepareStatement(query);
+            	cstmt.setInt(1,this.idmessage);
+            	ResultSet rs=cstmt.executeQuery(query);
+            	while(rs.next())
+            	{
+            		this.contenu=rs.getString("contenu");
+            		this.date=rs.getDate("date");
+            		this.idutilisateurroom=rs.getInt("idutilisateurroom");
+            	}
+            
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Erreur lors de la lecture"+e.getMessage());
+            }
+            finally
+            {
+                try
+                {
+                   cstmt.close();
+                }
+                catch (Exception e)
+                {
+                    
+                }
+            }
     	}
-    	public void update(){
-    		
+    	
+    	/**
+    	 * Méthode update non nécessaire (mais ici car implements CRUD)
+    	 */
+    	public void update()
+    	{
+    		//pas utilisable dans le cadre de cette application
     	}
-    	public void delete(){
+    	
+        /**
+         * suppression du message sur base de son identifiant
+         * @throws Exception erreur lors de la suppression
+         */
+    	public void delete() throws Exception
+    	{    		
+            CallableStatement cstmt =null;
+            try
+            {
+                String req = "call  DeleteMessage(?)";
+                cstmt = dbConnect.prepareCall(req);
+                cstmt.setInt(1,idmessage);
+                cstmt.executeUpdate();
+            }
+            catch(Exception f)
+            {
+                throw new Exception("Erreur lors de la suppression"+f.getMessage());
+            }
+            finally
+            {
+                try
+                {
+                   cstmt.close();
+                }
+                catch (Exception e)
+                {
+
+                }
+             }
     		
     	}
 }
