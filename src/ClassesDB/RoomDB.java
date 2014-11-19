@@ -43,7 +43,7 @@ public class RoomDB extends Room implements CRUD
 		super(idRoom, createur);
 	}
 	public void create(){
-		
+		String query= ";
 	}
 	public void read(){
 		
