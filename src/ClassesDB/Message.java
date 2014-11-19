@@ -13,8 +13,8 @@ public class Message
 	 * contenu : contenu du message
 	 * date : date à laquelle le message a été posté
 	 */
-	protected int idmessage, idutilisateurroom;
-	protected String contenu;
+	protected int idmessage, idutilisateurroom, idRoom;
+	protected String contenu, pseudo;
 	protected Date date;
 	
 	/**
@@ -32,14 +32,32 @@ public class Message
      * @param date date à laquelle le message a été posté
      * @param idutilisateurroom identifiant de la jonction entre la room et l'utilisateur
      */
-    public Message(int idmessage, String contenu, Date date, int idutilisateurroom)
+    public Message(int idmessage, String contenu, Date date, int idutilisateurroom, int idRoom, String pseudo)
     {
         this.idmessage=idmessage;
         this.contenu=contenu;
         this.date=date;
         this.idutilisateurroom=idutilisateurroom;
+		this.idRoom=idRoom;
+		this.pseudo=pseudo;
     }
+	
+	public int getIdRoom(){
+		return this.idRoom;
+	}
 
+	public void setIdRoom(int idRoom){
+		this.idRoom=idRoom;
+	}
+	
+	public String getPseudo(){
+		return this.pseudo;
+	}
+	
+	public void setPseudo(String pseudo){
+		this.pseudo=pseudo;
+	}
+	
     /**
      * getter idmessage
      * @return identifiant du message
@@ -111,7 +129,7 @@ public class Message
 	@Override
 	public String toString() {
 		return "Message [idmessage=" + idmessage + ", idutilisateurroom="
-				+ idutilisateurroom + ", contenu=" + contenu + ", date=" + date
+				+ idutilisateurroom + ", pseudo="+pseudo+", room="+room", contenu=" + contenu + ", date=" + date
 				+ "]";
 	}
 }

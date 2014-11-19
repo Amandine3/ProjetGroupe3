@@ -32,9 +32,9 @@ public class MessageDB extends Message implements CRUD
    * @param date date à laquelle le message a été posté
    * @param idutilisateurroom identifiant de la jonction entre la room et l'utilisateur
    */
-    public MessageDB(int idmessage,String contenu, Date date, int idutilisateurroom)
+    public MessageDB(int idmessage,String contenu, Date date, int idutilisateurroom, int idRoom, String pseudo)
     {
-        super(idmessage,contenu,date,idutilisateurroom);
+        super(idmessage,contenu,date,idutilisateurroom, idRoom, pseudo);
     }
     
     
@@ -83,21 +83,10 @@ public class MessageDB extends Message implements CRUD
             {          
                  String query="call createMessage(?,?,?)"; 
                  cstmt = dbConnect.prepareCall(query);
-    	     /*CREATE OR REPLACE
-
-    	     PROCEDURE createMessage (pseudoa varchar2, idrooma number, messagea varchar2) as
-
-    	        idutilroom number;
-
-    	       BEGIN
-
-    	        SELECT idutilisateurroom INTO idutilroom FROM utilisateurroom WHERE pseudo=pseudo and idroom=idrooma;
-
-    	        INSERT INTO message(datepost, contenu, idutilisateurroom) VALUES (current_date, messagea, idutilroom);
-
-    	        COMMIT;
-
-    	     END;*/
+				 cstmt.setString(1, pseudo);
+				 cstmt.setInt(2,idRoom);
+				 cstmt.setString(3, contenu);
+				cstmt.executeUpdate();
             }
             catch(Exception e)
             {

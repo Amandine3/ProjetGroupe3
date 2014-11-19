@@ -1,7 +1,7 @@
 package ClassesDB;
 
 import java.sql.Connection;
-
+import java.util.ArrayList<E>;
 
 /**
  * Classe RoomDB (classe de mappage poo-relationnel Room)
@@ -104,4 +104,31 @@ public class RoomDB extends Room implements CRUD
             catch(Exception e){}
         }		
 	}
+	
+	public ArrayList<Message> getMessageRoom(){
+		ArrayList<MessageDB> resultat=new ArrayList();
+		MessageDB a;
+		string query="select pseudo, contenu, datepost from jonctionmessage where idroom="+this.idRoom+" order by datepost";
+		PreparedStatement cstmt=null;
+		try{
+            	cstmt = dbConnect.prepareStatement(query);
+            	ResultSet rs=cstmt.executeQuery(query);
+            	while(rs.next()){
+            		a=new MessageDB();
+					a.setPseudo(rs.getString("PSEUDO"));
+					a.setDate(rs.getDate("DATEPOST"));
+					a.setContenu(rs.getString("CONTENU"));
+            	}
+        }
+        catch(Exception e){
+            throw new Exception("Erreur lors de la lecture"+e.getMessage());
+        }
+        finally{
+            try{
+                cstmt.close();
+            }
+            catch (Exception e){}
+        }
+		
+	}	
 }
