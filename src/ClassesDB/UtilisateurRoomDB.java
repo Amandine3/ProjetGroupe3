@@ -1,6 +1,7 @@
 package ClassesDB;
 
-import java.sql.Connection;
+import java.sql.*;
+import java.util.ArrayList;
 
 
 /**
@@ -36,13 +37,19 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 		
 	}
 	
+	/**
+	 * Constructeur paramétré
+	 * @param idUtilisateurRoom identifiant de la jonction entre la room et l'utilisateur
+	 * @param idRoom identifiant de la room
+	 * @param pseudo pseudo de l'utilisateur
+	 */
 	public UtilisateurRoomDB(int idUtilisateurRoom, int idRoom, String pseudo){
 		super(idUtilisateurRoom, idRoom, pseudo);
 	}
 	
 	/**
 	* enregistrement d'un nouvel utilisateurRoom dans la base de données
-	* @throws Exception erreur lors de la création
+	* @throws Exception erreur lors de la création 
 	*/
 	public void create() throws Exception{
 		CallableStatement cstmt=null;
@@ -52,7 +59,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 			 cstmt = dbConnect.prepareCall(query);
 			 cstmt.setInt(1, this.idRoom);
 			 cstmt.setString(2,this.pseudo);
-			cstmt.executeUpdate();
+			 cstmt.executeUpdate();
 		}
 		catch(Exception e)
 		{
@@ -72,8 +79,8 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 	}
 	
 	/**
-	* récupération des données d'un utilisateurRoom sur base de son 
-	* @throws Exception code inconnu
+	* récupération des données d'un utilisateurRoom sur base de son identifiant
+	* @throws Exception erreur lors de la lecture
 	*/
 	public void read() throws Exception{
 		String query = "SELECT * FROM UtilisateurRoom WHERE idUtilisateurRoom=?";
@@ -117,7 +124,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 	}
 	
     /**
-     * suppression de l'utilisateurroom sur base de son 
+     * suppression de l'utilisateurroom sur base de l'identifiant de la room et du pseudo de l'utilisateur
      * @throws Exception erreur lors de la suppression
      */
 	public void delete() throws Exception{
@@ -147,11 +154,17 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 		}
 	}
 	
-	public static ArrayList<int> readRoom(String pseudo) throws Exception{
+    /**
+    * méthode statique permettant de récupérer toutes les rooms auxquels un certain utilisateur a accès
+    * @param pseudo pseudo de l'utilisateur
+    * @return liste de room
+    * @throws Exception Erreur Utilisateur inconnu
+    */
+	public static ArrayList<Integer> readRoom(String pseudo) throws Exception{
 		PreparedStatement cstmt=null;
-		ArrayList<int> resultat=new ArrayList();
+		ArrayList<Integer> resultat=new ArrayList<Integer>();
 		try{
-			string query="select idRoom from UtilisateurRoom where pseudo=?";
+			String query="select idRoom from UtilisateurRoom where pseudo=?";
 			cstmt=dbConnect.prepareCall(query);
 			cstmt.setString(1, pseudo);
 			ResultSet rs=cstmt.executeQuery(query);
@@ -163,7 +176,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 		}
 		catch(Exception e)
 		{
-			throw new Exception("Erreur lors de la lecture"+e.getMessage());
+			throw new Exception("Erreur Utilisateur inconnu"+e.getMessage());
 		}
 		finally
 		{
@@ -176,4 +189,6 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 				
 			}
 		}
+
+	}
 }
