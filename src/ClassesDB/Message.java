@@ -129,7 +129,7 @@ public class Message
 	@Override
 	public String toString() {
 		return "Message [idmessage=" + idmessage + ", idutilisateurroom="
-				+ idutilisateurroom + ", pseudo="+pseudo+", room="+room", contenu=" + contenu + ", date=" + date
+				+ idutilisateurroom + ", pseudo="+pseudo+", room="+idRoom+", contenu=" + contenu + ", date=" + date
 				+ "]";
 	}
 }

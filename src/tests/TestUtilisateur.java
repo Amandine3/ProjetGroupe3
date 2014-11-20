@@ -49,6 +49,55 @@ public class TestUtilisateur
      
         try
         {
+        	  System.out.println("Test ajout 2 utilisateurs avec le même pseudo");
+        	  //pseudo, mp, nom, prenom, numgsm
+              c1=new UtilisateurDB("Amandarine3","am3","Vandevoir","Amandine","0472/345789");
+              c1.create();
+              c2=new UtilisateurDB("Amandarine3","ammm","Line","Amande","0472/0909989");
+              c2.create();
+              System.out.println("BAD ");
+        }
+        catch(Exception e)
+        {
+           System.out.println("OK exception normale d'ajout 2 ut. avec même pseudo"+e);
+        }   
+        try
+        { 
+           c1.delete();
+           c2.delete();
+        }
+        catch(Exception e)
+        {
+               
+        }
+        
+        try
+        {
+        	  System.out.println("Test ajout 2 utilisateurs avec le même numéro");
+        	  //pseudo, mp, nom, prenom, numgsm
+              c1=new UtilisateurDB("Alala3","am3","Vandevoir","Amandine","0472/343434");
+              c1.create();
+              c2=new UtilisateurDB("KitKat","ammm","Line","Amande","0472/343434");
+              c2.create();
+              System.out.println("BAD ");
+        }
+        catch(Exception e)
+        {
+           System.out.println("OK exception normale d'ajout 2 ut. avec même numéro"+e);
+        }   
+        try
+        { 
+           c1.delete();
+           c2.delete();
+        }
+        catch(Exception e)
+        {
+               
+        }
+        
+        
+        try
+        {
             System.out.println("Test d'effacement fructueux");
             c1=new UtilisateurDB("Amandarine3","am3","Vandevoir","Amandine","0472/345789");
             c1.create();
@@ -101,6 +150,7 @@ public class TestUtilisateur
         {
             
         }
+        
         
     }
 }

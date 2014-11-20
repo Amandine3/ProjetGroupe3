@@ -1,7 +1,7 @@
 package ClassesDB;
 
-import java.sql.Connection;
-import java.util.ArrayList<E>;
+import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Classe RoomDB (classe de mappage poo-relationnel Room)
@@ -46,7 +46,7 @@ public class RoomDB extends Room implements CRUD
 		CallableStatement cstmt =null;
 		try{
 			String query= "call createRoom1(?,?)";
-			cstmt = dbConnect.prepareCall(query)
+			cstmt = dbConnect.prepareCall(query);
 			cstmt.setString(1,createur);
 			cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
 			cstmt.execute();
@@ -63,7 +63,7 @@ public class RoomDB extends Room implements CRUD
         }	
 	}
 	public void read() throws Exception{
-		string query="select createur from room where idroom="+this.idRoom;
+		String query="select createur from room where idroom="+this.idRoom;
 		PreparedStatement cstmt=null;
 		try{
             	cstmt = dbConnect.prepareStatement(query);
@@ -86,12 +86,12 @@ public class RoomDB extends Room implements CRUD
 	{
 		// pas utilisable dans le cadre de cette application
 	}
-	public void delete(){
+	public void delete() throws Exception{
 		CallableStatement cstmt =null;
 		try{
 			String query= "deleteRoom(?)";
-			cstmt = dbConnect.prepareCall(query)
-			cstmt.setString(1,this.idRoom);
+			cstmt = dbConnect.prepareCall(query);
+			cstmt.setInt(1,this.idRoom);
 			cstmt.execute();
 		}
 		catch(Exception e){
@@ -105,10 +105,10 @@ public class RoomDB extends Room implements CRUD
         }		
 	}
 	
-	public ArrayList<Message> getMessageRoom(){
-		ArrayList<MessageDB> resultat=new ArrayList();
+	public ArrayList<MessageDB> getMessageRoom() throws Exception{
+		ArrayList<MessageDB> resultat=new ArrayList<MessageDB>();
 		MessageDB a;
-		string query="select pseudo, contenu, datepost from jonctionmessage where idroom="+this.idRoom+" order by datepost";
+		String query="select pseudo, contenu, datepost from jonctionmessage where idroom="+this.idRoom+" order by datepost";
 		PreparedStatement cstmt=null;
 		try{
             	cstmt = dbConnect.prepareStatement(query);
@@ -119,6 +119,7 @@ public class RoomDB extends Room implements CRUD
 					a.setDate(rs.getDate("DATEPOST"));
 					a.setContenu(rs.getString("CONTENU"));
             	}
+                return resultat;
         }
         catch(Exception e){
             throw new Exception("Erreur lors de la lecture"+e.getMessage());
@@ -126,6 +127,7 @@ public class RoomDB extends Room implements CRUD
         finally{
             try{
                 cstmt.close();
+ 
             }
             catch (Exception e){}
         }

@@ -11,12 +11,12 @@ public class Room
 	/**
 	 * L'identifiant de la room
 	 */
-	private int idRoom;
+	protected int idRoom;
 	
 	/**
 	 * Le pseudo du créateur
 	 */
-	private String createur;
+	protected String createur;
 	
 	
 	/**

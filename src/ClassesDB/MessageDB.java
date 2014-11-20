@@ -48,7 +48,7 @@ public class MessageDB extends Message implements CRUD
      */
       public MessageDB(String contenu, Date date, int idutilisateurroom)
       {
-          super(0,contenu,date,idutilisateurroom);
+          super(0,contenu,date,idutilisateurroom, 0, "");
       }
       
       /**
@@ -59,7 +59,7 @@ public class MessageDB extends Message implements CRUD
        */
         public MessageDB(int idmessage)
         {
-            super(idmessage,"",null,0);
+            super(idmessage,"",null,0, 0, "");
         }
         
        /**
