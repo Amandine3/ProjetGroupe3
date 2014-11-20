@@ -20,7 +20,7 @@ public class Utilisateur
     }
     
    /**
-    *	constructeur paramétré
+    * constructeur paramétré
  	* @param pseudo pseudo de l'utilisateur
  	* @param motdepasse mot de passe de l'utilisateur
  	* @param nom nom de l'utilisateur

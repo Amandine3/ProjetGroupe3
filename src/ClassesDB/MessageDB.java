@@ -8,7 +8,6 @@ import java.sql.*;
  * @see Message
  */
 
-// ATTENTION MessageDB A REVOIR !!! (CREATE)
 public class MessageDB extends Message implements CRUD
 {
     /**
@@ -31,6 +30,8 @@ public class MessageDB extends Message implements CRUD
    * @param contenu contenu du message
    * @param date date à laquelle le message a été posté
    * @param idutilisateurroom identifiant de la jonction entre la room et l'utilisateur
+   * @param idRoom : identifiant de la room où le message a été posté
+   * @param pseudo : pseudo de l'utilisateur qui a posté le message
    */
     public MessageDB(int idmessage,String contenu, Date date, int idutilisateurroom, int idRoom, String pseudo)
     {
@@ -107,7 +108,7 @@ public class MessageDB extends Message implements CRUD
         
         /**
          * récupération des données d'un message sur base de son identifiant
-         * @throws Exception code inconnu
+         * @throws Exception erreur lors de la lecture
          */
     	public void read() throws Exception
     	{
