@@ -88,16 +88,16 @@ public class RoomDB extends Room implements CRUD
 		PreparedStatement cstmt=null;
 		try{
             	cstmt = dbConnect.prepareStatement(query);
-            	ResultSet rs=cstmt.executeQuery(query);
+            	cstmt.setInt(1,this.idRoom);
+            	ResultSet rs=cstmt.executeQuery();
+            	
             	if(rs.isBeforeFirst())
             	{
-            		while(rs.next())
-            		{
-            			this.createur=rs.getString("createur");
-            		}
+            	while(rs.next()){
+            		this.createur=rs.getString("createur");
             	}
-            	else
-            		throw new Exception();
+            	}
+            	else throw new Exception();
         }
         catch(Exception e){
             throw new Exception("Erreur lors de la lecture"+e.getMessage());
@@ -107,7 +107,7 @@ public class RoomDB extends Room implements CRUD
                 cstmt.close();
             }
             catch (Exception e){}
-        }
+        };
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public class RoomDB extends Room implements CRUD
 	public void delete() throws Exception{
 		CallableStatement cstmt =null;
 		try{
-			String query= "deleteRoom(?)";
+			String query= "call deleteRoom(?)";
 			cstmt = dbConnect.prepareCall(query);
 			cstmt.setInt(1,this.idRoom);
 			cstmt.execute();
@@ -178,3 +178,4 @@ public class RoomDB extends Room implements CRUD
 		
 	}	
 }
+
