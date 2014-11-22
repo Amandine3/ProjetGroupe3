@@ -23,7 +23,7 @@ public class GestCRUD
     }
     public static void delete(CRUD instance)throws Exception
     {
-        instance.update();
+        instance.delete();
     }
       
 }

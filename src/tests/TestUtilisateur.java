@@ -26,11 +26,11 @@ public class TestUtilisateur
         {
         	  System.out.println("Test ajout utilisateur");
         	  //pseudo, mp, nom, prenom, numgsm
-              c1=new UtilisateurDB("Amandarine3","am3","Vandevoir","Amandine","0472/345789");
-              c1.create();
+              c1=new UtilisateurDB("Amandarine3","am","Vandevoir","Amandine","04567899");
+              GestCRUD.create(c1);
               String pseu=c1.getPseudo();
               c2=new UtilisateurDB(pseu);
-              c2.read();
+              GestCRUD.read(c2);
               System.out.println("c2="+c2);
               System.out.println("OK");
         }
@@ -40,7 +40,7 @@ public class TestUtilisateur
         }   
         try
         { 
-           c1.delete();
+           GestCRUD.delete(c1);;
         }
         catch(Exception e)
         {
@@ -52,9 +52,9 @@ public class TestUtilisateur
         	  System.out.println("Test ajout 2 utilisateurs avec le même pseudo");
         	  //pseudo, mp, nom, prenom, numgsm
               c1=new UtilisateurDB("Amandarine3","am3","Vandevoir","Amandine","0472/345789");
-              c1.create();
+              GestCRUD.create(c1);
               c2=new UtilisateurDB("Amandarine3","ammm","Line","Amande","0472/0909989");
-              c2.create();
+              GestCRUD.create(c2);
               System.out.println("BAD ");
         }
         catch(Exception e)
@@ -63,8 +63,8 @@ public class TestUtilisateur
         }   
         try
         { 
-           c1.delete();
-           c2.delete();
+        	GestCRUD.delete(c1);
+        	GestCRUD.delete(c2);
         }
         catch(Exception e)
         {
@@ -76,9 +76,9 @@ public class TestUtilisateur
         	  System.out.println("Test ajout 2 utilisateurs avec le même numéro");
         	  //pseudo, mp, nom, prenom, numgsm
               c1=new UtilisateurDB("Alala3","am3","Vandevoir","Amandine","0472/343434");
-              c1.create();
+              GestCRUD.create(c1);
               c2=new UtilisateurDB("KitKat","ammm","Line","Amande","0472/343434");
-              c2.create();
+              GestCRUD.create(c2);
               System.out.println("BAD ");
         }
         catch(Exception e)
@@ -87,8 +87,8 @@ public class TestUtilisateur
         }   
         try
         { 
-           c1.delete();
-           c2.delete();
+        	GestCRUD.delete(c1);
+        	GestCRUD.delete(c2);
         }
         catch(Exception e)
         {
@@ -99,12 +99,12 @@ public class TestUtilisateur
         try
         {
             System.out.println("Test d'effacement fructueux");
-            c1=new UtilisateurDB("Amandarine3","am3","Vandevoir","Amandine","0472/345789");
-            c1.create();
+            c1=new UtilisateurDB("Chateau","bla3","BLASPHEME","BATSITE","04727789");
+            GestCRUD.create(c1);
 			String pseu=c1.getPseudo();
-            c1.delete();
+            GestCRUD.delete(c1);
             c2=new UtilisateurDB(pseu);
-            c2.read();
+            GestCRUD.read(c2);
             System.out.println("c2 ="+c2);
             System.out.println("BAD");
         }
@@ -114,7 +114,7 @@ public class TestUtilisateur
         }
         try
         { 
-            c1.delete();
+            GestCRUD.delete(c1);
         }
         catch(Exception e)
         {
@@ -125,15 +125,15 @@ public class TestUtilisateur
         { 
             System.out.println("Test mise à jour");
             c1=new UtilisateurDB("Amandarine3","am3","Vandevoir","Amandine","0472/345789");
-            c1.create();
+            GestCRUD.create(c1);
 			String pseu=c1.getPseudo();
 			c1.setMotdepasse("amandine3");
             c1.setNom("nouvnom");
             c1.setPrenom("nouvprenom");
             c1.setNumgsm("0472/444444");
-            c1.update();
+            GestCRUD.update(c1);
             c2=new UtilisateurDB(pseu);
-            c2.read();
+            GestCRUD.read(c2);
             c1.setPseudo(pseu);
             c1.delete();
             System.out.println("OK");
@@ -154,59 +154,4 @@ public class TestUtilisateur
         
     }
 }
-
-        
-        /*
-         try
-         {
-            System.out.println("test d'effacement infructueux(client impliqué dans réservation)");
-            c1=new ClientDB(10);
-            c1.delete();
-            System.out.println("BAD");
-         }
-         catch(Exception e)
-         {
-             System.out.println("OK exception normale d'effacement"+e);
-         }
-
-                
-        
-        try
-        {
-            System.out.println("test de recherche fructueuse");
-            ArrayList<ClientDB> liste=ClientDB.rechercheNom("Dupont");
-            for(ClientDB pr:liste)
-            {
-              System.out.println(pr);
-            }
-            System.out.println("OK");
-        }
-        catch(Exception e)
-        {
-            System.out.println("exception de recherche "+e);
-         }
-        
-        try
-        {
-            System.out.println("test de recherche infructueuse");
-            ArrayList<ClientDB> liste=ClientDB.rechercheNom("ZZZZZZ");
-            for(ClientDB pr:liste)
-            {
-              System.out.println(pr);
-            }
-            System.out.println("BAD");
-        }
-        catch(Exception e)
-        {
-            System.out.println("OK exception normale recherche "+e);
-        }
-        
-      try
-      {  
-        con.close();
-      }
-      catch(Exception e)
-      {
-          
-      }
-   }*/ 
+ 

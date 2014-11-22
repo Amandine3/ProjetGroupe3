@@ -89,9 +89,15 @@ public class RoomDB extends Room implements CRUD
 		try{
             	cstmt = dbConnect.prepareStatement(query);
             	ResultSet rs=cstmt.executeQuery(query);
-            	while(rs.next()){
-            		this.createur=rs.getString("createur");
+            	if(rs.isBeforeFirst())
+            	{
+            		while(rs.next())
+            		{
+            			this.createur=rs.getString("createur");
+            		}
             	}
+            	else
+            		throw new Exception();
         }
         catch(Exception e){
             throw new Exception("Erreur lors de la lecture"+e.getMessage());

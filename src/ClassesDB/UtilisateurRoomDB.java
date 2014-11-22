@@ -90,11 +90,16 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 			cstmt = dbConnect.prepareStatement(query);
 			cstmt.setInt(1,this.idUtilisateurRoom);
 			ResultSet rs=cstmt.executeQuery(query);
-			while(rs.next())
-			{
-				this.idRoom=rs.getInt("IDROOM");
-				this.pseudo=rs.getString("PSEUDO");
-			}
+			if(rs.isBeforeFirst())
+        	{
+				while(rs.next())
+				{
+					this.idRoom=rs.getInt("IDROOM");
+					this.pseudo=rs.getString("PSEUDO");
+				}
+        	}
+        	else
+        		throw new Exception();
 		
 		}
 		catch(Exception e)

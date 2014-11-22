@@ -105,14 +105,19 @@ public class UtilisateurDB extends Utilisateur implements CRUD
         {
         	cstmt = dbConnect.prepareStatement(query);
         	cstmt.setString(1,this.pseudo);
-        	ResultSet rs=cstmt.executeQuery(query);
-        	while(rs.next())
-        	{
-        		this.motdepasse=rs.getString("motdepasse");
-        		this.nom=rs.getString("nom");
-        		this.prenom=rs.getString("prenom");
-        		this.numgsm=rs.getString("numgsm");
+        	ResultSet rs=cstmt.executeQuery();
+        	if(rs.isBeforeFirst()){
+	        	while(rs.next())
+	        	{
+	        		this.pseudo=rs.getString("PSEUDO");
+	        		this.motdepasse=rs.getString("motdepasse");
+	        		this.nom=rs.getString("nom");
+	        		this.prenom=rs.getString("prenom");
+	        		this.numgsm=rs.getString("numgsm");
+	        	}
         	}
+        	else
+        		throw new Exception();
         
         }
         catch(Exception e)
@@ -177,7 +182,7 @@ public class UtilisateurDB extends Utilisateur implements CRUD
           CallableStatement cstmt =null;
           try
           {
-              String req = "call  DeleteUtilisateur(?)";
+              String req = "call deleteutilisateur(?)";
               cstmt = dbConnect.prepareCall(req);
               cstmt.setString(1,pseudo);
               cstmt.executeUpdate();

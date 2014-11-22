@@ -119,13 +119,17 @@ public class MessageDB extends Message implements CRUD
             	cstmt = dbConnect.prepareStatement(query);
             	cstmt.setInt(1,this.idmessage);
             	ResultSet rs=cstmt.executeQuery(query);
-            	while(rs.next())
+            	if(rs.isBeforeFirst())
             	{
-            		this.contenu=rs.getString("contenu");
-            		this.date=rs.getDate("date");
-            		this.idutilisateurroom=rs.getInt("idutilisateurroom");
+            		while(rs.next())
+            		{
+            			this.contenu=rs.getString("contenu");
+            			this.date=rs.getDate("date");
+            			this.idutilisateurroom=rs.getInt("idutilisateurroom");
+            		}
             	}
-            
+            	else
+            		throw new Exception();
             }
             catch(Exception e)
             {
