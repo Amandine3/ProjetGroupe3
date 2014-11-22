@@ -1,5 +1,10 @@
 package tests;
 
+/**
+ * Classe TestRoom
+ * @author Amandine Vandevoir & Aurélien Vandaele
+ */
+
 import java.sql.Connection;
 
 import myconnections.DBConnection;
