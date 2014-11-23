@@ -52,6 +52,9 @@ public class MessageDB extends Message implements CRUD
           super(0,contenu,date,idutilisateurroom, 0, "");
       }
       
+	  public MessageDB(String contenu, int idRoom, String pseudo){
+		super(-1, contenu, null, -1, idRoom, pseudo);
+	  }
       /**
        * constructeur à utiliser lorsque le message est déjà présent en base de données
        * mais qu'on ne connaît que son identifiant, à utiliser avec read
