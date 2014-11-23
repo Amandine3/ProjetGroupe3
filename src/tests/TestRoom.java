@@ -6,7 +6,6 @@ package tests;
  */
 
 import java.sql.Connection;
-
 import myconnections.DBConnection;
 import ClassesDB.*;
 
@@ -100,5 +99,5 @@ public class TestRoom
           
      }
 
- }
+   }
 }

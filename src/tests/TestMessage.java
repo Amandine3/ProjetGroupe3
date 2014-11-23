@@ -2,11 +2,10 @@ package tests;
 
 /**
  * Classe TestMessage
- * @author Amandine Vandevoir & AurÃ©lien Vandaele
+ * @author Amandine Vandevoir & Aurélien Vandaele
  */
 import ClassesDB.*;
 import myconnections.*;
-
 import java.sql.Connection;
 
 public class TestMessage
@@ -53,10 +52,8 @@ public class TestMessage
               c1=new MessageDB("Bonjour a toi", 30, "Blabla");
               GestCRUD.create(c1);
               int idm=c1.getIdmessage();
-              System.out.println("idmessage : " + idm);
               c2=new MessageDB();
               c2.setIdmessage(idm);
-
               GestCRUD.read(c2);
               System.out.println("c2="+c2);
               System.out.println("OK ");
@@ -128,7 +125,7 @@ public class TestMessage
         
         try
         {
-            System.out.println("Test d'effacement d'un messages d'un simple utilisateur (pas le créateur de la room)");
+            System.out.println("Test d'effacement d'un message d'un simple utilisateur (pas le créateur de la room)");
             c1=new MessageDB("Bonjour a toi", 30, "Blabla");
             GestCRUD.create(c1);
 			GestCRUD.read(c1);

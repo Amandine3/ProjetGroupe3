@@ -52,9 +52,15 @@ public class MessageDB extends Message implements CRUD
           super(0,contenu,date,idutilisateurroom, 0, "");
       }
       
+      /** constructeur paramétré à utiliser afin de créer un message et de l'envoyer dans la base de données
+       * @param contenu contenu du message
+       * @param idRoom identifiant de la room où le message a été posté
+       * @param pseudo pseudo de l'utilisateur qui a posté le message
+       */
 	  public MessageDB(String contenu, int idRoom, String pseudo){
 		super(-1, contenu, null, -1, idRoom, pseudo);
 	  }
+	  
       /**
        * constructeur à utiliser lorsque le message est déjà présent en base de données
        * mais qu'on ne connaît que son identifiant, à utiliser avec read

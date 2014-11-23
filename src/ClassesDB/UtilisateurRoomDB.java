@@ -47,7 +47,11 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 		super(idUtilisateurRoom, idRoom, pseudo);
 	}
 	
-	
+	/**
+	 * constructeur paramétré 
+	 * @param idRoom identifiant de la room
+	 * @param pseudo pseudo de l'utilisateur
+	 */
 	public UtilisateurRoomDB(int idRoom, String pseudo){
 		super(-1, idRoom, pseudo);
 
@@ -168,7 +172,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
     /**
     * méthode statique permettant de récupérer toutes les rooms auxquels un certain utilisateur a accès
     * @param pseudo pseudo de l'utilisateur
-    * @return liste de room
+    * @return liste de rooms
     * @throws Exception Erreur Utilisateur inconnu
     */
 	public static ArrayList<Integer> readRoom(String pseudo) throws Exception{
@@ -208,6 +212,10 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 
 	}
 	
+	/**
+	 * Méthode permettant de récupérer l'idUtilisateurRoom selon un pseudo et une room 
+	 * @throws Exception Erreur lors de la lecture
+	 */
 	public void readPseudoRoom() throws Exception{
 		String query = "SELECT * FROM UtilisateurRoom WHERE idRoom=? and pseudo=?";
 		PreparedStatement cstmt=null;

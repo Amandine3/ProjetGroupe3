@@ -7,6 +7,7 @@ import ClassesDB.*;
 import myconnections.*;
 import java.sql.Connection;
 import java.util.ArrayList;
+
 public class testNonCrudSupp{
 	public static void main(String[] args){
 	    DBConnection dbc =new DBConnection();
@@ -22,9 +23,7 @@ public class testNonCrudSupp{
 		try{
 			System.out.println("Test deux méthodes non crud positif");
 			ArrayList<Integer> a=UtilisateurRoomDB.readRoom("Aurelien");
-			System.out.println("1");
 			ArrayList<MessageDB> b=RoomDB.getMessageRoom(31);
-			System.out.println("2");
 			for (int i=0;i<a.size();i++){
 				System.out.println(a.get(i));
 			}
@@ -45,7 +44,7 @@ public class testNonCrudSupp{
 			}
 		}
 		catch(Exception e){
-			System.out.println("Ok"+e.getMessage());
+			System.out.println("OK "+e.getMessage());
 		}
 		try{
 			System.out.println("test non fructueux 2");
@@ -56,7 +55,7 @@ public class testNonCrudSupp{
 			}
 		}
 		catch(Exception e){
-			System.out.println("OK"+ e.getMessage());
+			System.out.println("OK "+ e.getMessage());
 		}
 	}
 }

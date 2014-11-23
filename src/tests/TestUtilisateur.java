@@ -25,7 +25,6 @@ public class TestUtilisateur
         try
         {
         	  System.out.println("Test ajout utilisateur");
-        	  //pseudo, mp, nom, prenom, numgsm
               c1=new UtilisateurDB("Amandarine3","am","Vandevoir","Amandine","04567899");
               GestCRUD.create(c1);
               String pseu=c1.getPseudo();
@@ -50,7 +49,6 @@ public class TestUtilisateur
         try
         {
         	  System.out.println("Test ajout 2 utilisateurs avec le même pseudo");
-        	  //pseudo, mp, nom, prenom, numgsm
               c1=new UtilisateurDB("Amandarine3","am3","Vandevoir","Amandine","0472/345789");
               GestCRUD.create(c1);
               c2=new UtilisateurDB("Amandarine3","ammm","Line","Amande","0472/0909989");
@@ -74,7 +72,6 @@ public class TestUtilisateur
         try
         {
         	  System.out.println("Test ajout 2 utilisateurs avec le même numéro");
-        	  //pseudo, mp, nom, prenom, numgsm
               c1=new UtilisateurDB("Alala3","am3","Vandevoir","Amandine","0472/343434");
               GestCRUD.create(c1);
               c2=new UtilisateurDB("KitKat","ammm","Line","Amande","0472/343434");

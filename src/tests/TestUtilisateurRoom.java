@@ -25,7 +25,6 @@ public class TestUtilisateurRoom
         try
         {
         	  System.out.println("Test ajout utilisateurRoom");
-        	  //pseudo, mp, nom, prenom, numgsm
               c1=new UtilisateurRoomDB(30, "Blabla");
               GestCRUD.create(c1);
 			  c1.readPseudoRoom();
@@ -54,14 +53,7 @@ public class TestUtilisateurRoom
      
         try
         {
-        	  System.out.println("Test ajout 2 utilisateurs avec le mÃªme pseudo dans la mÃªme room");
-        	  //pseudo, mp, nom, prenom, numgsm
-              c1=new UtilisateurRoomDB(30,"Blabla");
-              GestCRUD.create(c1);
-			  c1.readPseudoRoom();
-              c2=new UtilisateurRoomDB(30, "Blabla");
         	  System.out.println("Test ajout 2 utilisateurs avec le même pseudo dans la même room");
-        	  //pseudo, mp, nom, prenom, numgsm
               c1=new UtilisateurRoomDB(30,"Blabla");
               GestCRUD.create(c1);
 			  c1.readPseudoRoom();
@@ -106,7 +98,7 @@ public class TestUtilisateurRoom
         
         try
         {
-        	  System.out.println("Test ajout  infructueux utilisateur qui n'existe pas");
+        	  System.out.println("Test ajout infructueux utilisateur qui n'existe pas");
               c1=new UtilisateurRoomDB(30, "azertyuio");
               c1.create();
 			  System.out.println("BAD ");
@@ -122,12 +114,12 @@ public class TestUtilisateurRoom
         catch(Exception e)
         {
                
-        }        
+        } 
+        
         try
         {
             System.out.println("Test d'effacement fructueux");
             c1=new UtilisateurRoomDB(30, "Blabla");
-
             GestCRUD.create(c1);
 			c1.readPseudoRoom();
 			int idUr=c1.getIdUtilisateurRoom();
@@ -150,8 +142,7 @@ public class TestUtilisateurRoom
         {
              
         }
-        
-        
+               
         
     }
 }

@@ -107,7 +107,7 @@ public class RoomDB extends Room implements CRUD
                 cstmt.close();
             }
             catch (Exception e){}
-        };
+        }
 	}
 	
 	/**
