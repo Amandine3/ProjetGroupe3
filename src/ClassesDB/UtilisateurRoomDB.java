@@ -177,7 +177,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 			String query="select idRoom from UtilisateurRoom where pseudo=?";
 			cstmt=dbConnect.prepareCall(query);
 			cstmt.setString(1, pseudo);
-			ResultSet rs=cstmt.executeQuery(query);
+			ResultSet rs=cstmt.executeQuery();
 			while(rs.next())
 			{
 				resultat.add(rs.getInt("IDROOM"));

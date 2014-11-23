@@ -65,7 +65,7 @@ public class RoomDB extends Room implements CRUD
 			cstmt = dbConnect.prepareCall(query);
 			cstmt.setString(1,createur);
 			cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
-			cstmt.execute();
+			cstmt.executeUpdate();
 			this.idRoom=cstmt.getInt(2);
 		}
 		catch(Exception e){
@@ -128,7 +128,7 @@ public class RoomDB extends Room implements CRUD
 			String query= "call deleteRoom(?)";
 			cstmt = dbConnect.prepareCall(query);
 			cstmt.setInt(1,this.idRoom);
-			cstmt.execute();
+			cstmt.executeUpdate();
 		}
 		catch(Exception e){
             throw new Exception("Erreur lors de la Suppression"+e.getMessage());
