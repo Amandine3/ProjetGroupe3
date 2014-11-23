@@ -49,11 +49,8 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 	
 	
 	public UtilisateurRoomDB(int idRoom, String pseudo){
-<<<<<<< HEAD
-		super(-1, idRoom, pseudo)
-=======
 		super(-1, idRoom, pseudo);
->>>>>>> bda423ca15dde0413f688f99e59f7f8908c9cb92
+
 	}
 	
 	/**

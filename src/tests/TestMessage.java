@@ -1,7 +1,7 @@
 package tests;
 
 /**
- * Classe TestUtilisateur
+ * Classe TestMessage
  * @author Amandine Vandevoir & Aurélien Vandaele
  */
 import ClassesDB.*;
@@ -27,7 +27,7 @@ public class TestMessage
         	  System.out.println("Test ajout Message par créateur");
               c1=new MessageDB("Bonjour a tous", 30, "Aurelien");
               GestCRUD.create(c1);
-              int id=c1.getIdMessage();
+              int id=c1.getIdmessage();
               c2=new MessageDB(id);
               GestCRUD.read(c2);
               System.out.println("c2="+c2);
@@ -51,7 +51,7 @@ public class TestMessage
         	  System.out.println("Test ajout message par une personne n'ayant pas créé la room");
               c1=new MessageDB("Bonjour a toi", 30, "Blabla");
               GestCRUD.create(c1);
-              c2=new MessageDB(c1.getIdMessage());
+              c2=new MessageDB(c1.getIdmessage());
               GestCRUD.create(c2);
               System.out.println("c2="+c2);
               System.out.println("OK ");
@@ -70,4 +70,4 @@ public class TestMessage
         }
         
 }
- 
+}
