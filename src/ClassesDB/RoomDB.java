@@ -157,13 +157,17 @@ public class RoomDB extends Room implements CRUD
             	cstmt = dbConnect.prepareStatement(query);
             	cstmt.setInt(1,idroom);
             	ResultSet rs=cstmt.executeQuery(query);
-            	while(rs.next()){
-            		a=new MessageDB();
-					a.setPseudo(rs.getString("PSEUDO"));
-					a.setDate(rs.getDate("DATEPOST"));
-					a.setContenu(rs.getString("CONTENU"));
-            	}
-                return resultat;
+				if(rs.isBeforeFirst(){					
+					while(rs.next()){
+						a=new MessageDB();
+						a.setPseudo(rs.getString("PSEUDO"));
+						a.setDate(rs.getDate("DATEPOST"));
+						a.setContenu(rs.getString("CONTENU"));
+					}
+					return resultat;
+				}
+				else
+				     throw new Exception("Message inconnu"+e.getMessage());
         }
         catch(Exception e){
             throw new Exception("Message inconnu"+e.getMessage());
