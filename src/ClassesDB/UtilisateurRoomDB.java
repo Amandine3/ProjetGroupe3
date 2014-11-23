@@ -47,6 +47,11 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 		super(idUtilisateurRoom, idRoom, pseudo);
 	}
 	
+	
+	public UtilisateurRoomDB(int idRoom, String pseudo){
+		super(-1, idRoom, String pseudo)
+	}
+	
 	/**
 	* enregistrement d'un nouvel utilisateurRoom dans la base de données
 	* @throws Exception erreur lors de la création 
@@ -196,4 +201,44 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 		}
 
 	}
+	
+	public void readPseudoRoom() throws Exception{
+		String query = "SELECT * FROM UtilisateurRoom WHERE idRoom=? and pseudo=?";
+		PreparedStatement cstmt=null;
+		try
+		{
+			cstmt = dbConnect.prepareStatement(query);
+			cstmt.setInt(1,this.idRoom);
+			cstmt.setString(2, this.pseudo);
+			ResultSet rs=cstmt.executeQuery(query);
+			if(rs.isBeforeFirst())
+        	{
+				while(rs.next())
+				{
+					this.idRoom=rs.getInt("IDROOM");
+					this.pseudo=rs.getString("PSEUDO");
+				}
+        	}
+        	else
+        		throw new Exception();
+		
+		}
+		catch(Exception e)
+		{
+			throw new Exception("Erreur lors de la lecture"+e.getMessage());
+		}
+		finally
+		{
+			try
+			{
+			   cstmt.close();
+			}
+			catch (Exception e)
+			{
+				
+			}
+		}
+	
+	}
+	
 }
