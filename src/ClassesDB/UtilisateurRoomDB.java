@@ -49,7 +49,11 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 	
 	
 	public UtilisateurRoomDB(int idRoom, String pseudo){
+<<<<<<< HEAD
 		super(-1, idRoom, pseudo)
+=======
+		super(-1, idRoom, pseudo);
+>>>>>>> bda423ca15dde0413f688f99e59f7f8908c9cb92
 	}
 	
 	/**
@@ -63,7 +67,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 			 String query="call createUtilisateurRoom(?,?)"; 
 			 cstmt = dbConnect.prepareCall(query);
 			 cstmt.setInt(1, this.idRoom);
-			 cstmt.setString(2,this.pseudo);
+			 cstmt.setString(2, this.pseudo);
 			 cstmt.executeUpdate();
 		}
 		catch(Exception e)
@@ -94,7 +98,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 		{
 			cstmt = dbConnect.prepareStatement(query);
 			cstmt.setInt(1,this.idUtilisateurRoom);
-			ResultSet rs=cstmt.executeQuery(query);
+			ResultSet rs=cstmt.executeQuery();
 			if(rs.isBeforeFirst())
         	{
 				while(rs.next())
@@ -177,7 +181,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 			String query="select idRoom from UtilisateurRoom where pseudo=?";
 			cstmt=dbConnect.prepareCall(query);
 			cstmt.setString(1, pseudo);
-			ResultSet rs=cstmt.executeQuery(query);
+			ResultSet rs=cstmt.executeQuery();
 			while(rs.next())
 			{
 				resultat.add(rs.getInt("IDROOM"));
@@ -210,7 +214,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 			cstmt = dbConnect.prepareStatement(query);
 			cstmt.setInt(1,this.idRoom);
 			cstmt.setString(2, this.pseudo);
-			ResultSet rs=cstmt.executeQuery(query);
+			ResultSet rs=cstmt.executeQuery();
 			if(rs.isBeforeFirst())
         	{
 				while(rs.next())

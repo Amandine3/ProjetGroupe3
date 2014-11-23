@@ -82,12 +82,14 @@ public class MessageDB extends Message implements CRUD
             CallableStatement cstmt=null;
             try
             {          
-                 String query="call createMessage(?,?,?)"; 
+                 String query="call createMessage(?,?,?,?)"; 
                  cstmt = dbConnect.prepareCall(query);
 				 cstmt.setString(1, pseudo);
 				 cstmt.setInt(2,idRoom);
 				 cstmt.setString(3, contenu);
-				cstmt.executeUpdate();
+				 cstmt.registerOutParameter(4, java.sql.Types.INTEGER);
+				 cstmt.executeUpdate();
+			     this.idmessage=cstmt.getInt(4);
             }
             catch(Exception e)
             {
