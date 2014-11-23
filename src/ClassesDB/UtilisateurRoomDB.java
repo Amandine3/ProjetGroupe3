@@ -49,7 +49,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 	
 	
 	public UtilisateurRoomDB(int idRoom, String pseudo){
-		super(-1, idRoom, String pseudo)
+		super(-1, idRoom, pseudo);
 	}
 	
 	/**
@@ -215,8 +215,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
         	{
 				while(rs.next())
 				{
-					this.idRoom=rs.getInt("IDROOM");
-					this.pseudo=rs.getString("PSEUDO");
+					this.idUtilisateurRoom=rs.getInt("IDUTILISATEURROOM");
 				}
         	}
         	else

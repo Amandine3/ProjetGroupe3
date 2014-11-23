@@ -2,7 +2,7 @@ package tests;
 
 /**
  * Classe TestUtilisateur
- * @author Amandine Vandevoir & AurÃ©lien Vandaele
+ * @author Amandine Vandevoir & Aurélien Vandaele
  */
 import ClassesDB.*;
 import myconnections.*;
@@ -26,10 +26,12 @@ public class TestUtilisateurRoom
         {
         	  System.out.println("Test ajout utilisateurRoom");
         	  //pseudo, mp, nom, prenom, numgsm
-              c1=new UtilisateurRoomDB();
+              c1=new UtilisateurRoomDB(30, "Blabla");
               GestCRUD.create(c1);
-              String pseu=c1.getPseudo();
-              c2=new UtilisateurDB(pseu);
+			  c1.readPseudoRoom();
+              int idUtilisateurRoom=c1.getIdUtilisateurRoom();
+              c2=new UtilisateurRoomDB();
+			  c2.setIdUtilisateurRoom(idUtilisateurRoom);
               GestCRUD.read(c2);
               System.out.println("c2="+c2);
               System.out.println("OK");
@@ -49,17 +51,19 @@ public class TestUtilisateurRoom
      
         try
         {
-        	  System.out.println("Test ajout 2 utilisateurs avec le mÃªme pseudo");
+        	  System.out.println("Test ajout 2 utilisateurs avec le même pseudo dans la même room");
         	  //pseudo, mp, nom, prenom, numgsm
-              c1=new UtilisateurDB("Amandarine3","am3","Vandevoir","Amandine","0472/345789");
+              c1=new UtilisateurRoomDB(30,"Blabla");
               GestCRUD.create(c1);
-              c2=new UtilisateurDB("Amandarine3","ammm","Line","Amande","0472/0909989");
+			  c1.readPseudoRoom();
+              c2=new UtilisateurRoomDB(30, "Blabla");
               GestCRUD.create(c2);
+			  c2.readPseudoRoom();
               System.out.println("BAD ");
         }
         catch(Exception e)
         {
-           System.out.println("OK exception normale d'ajout 2 ut. avec mÃªme pseudo"+e);
+           System.out.println("OK exception normale d'ajout 2 ut. avec même pseudo dans la même room"+e);
         }   
         try
         { 
@@ -73,37 +77,53 @@ public class TestUtilisateurRoom
         
         try
         {
-        	  System.out.println("Test ajout 2 utilisateurs avec le mÃªme numÃ©ro");
-        	  //pseudo, mp, nom, prenom, numgsm
-              c1=new UtilisateurDB("Alala3","am3","Vandevoir","Amandine","0472/343434");
-              GestCRUD.create(c1);
-              c2=new UtilisateurDB("KitKat","ammm","Line","Amande","0472/343434");
-              GestCRUD.create(c2);
+        	  System.out.println("Test ajout infructueux dans room qui n'existe pas");
+              c1=new UtilisateurRoomDB(28, "Blabla");
+			  c1.readPseudoRoom();
               System.out.println("BAD ");
         }
         catch(Exception e)
         {
-           System.out.println("OK exception normale d'ajout 2 ut. avec mÃªme numÃ©ro"+e);
+           System.out.println("OK exception normale d'ajout  ut. dans une room qui n'existe pas"+e);
         }   
         try
         { 
         	GestCRUD.delete(c1);
-        	GestCRUD.delete(c2);
         }
         catch(Exception e)
         {
                
         }
         
-        
+        try
+        {
+        	  System.out.println("Test ajout  infructueux utilisateur qui n'existe pas");
+              c1=new UtilisateurRoomDB(30, "azertyuio");
+              c1.readPseudoRoom();
+			  System.out.println("BAD ");
+        }
+        catch(Exception e)
+        {
+           System.out.println("OK exception normale d'ajout 2 ut. dans une room qui n'existe pas"+e);
+        }   
+        try
+        { 
+        	GestCRUD.delete(c1);
+        }
+        catch(Exception e)
+        {
+               
+        }        
         try
         {
             System.out.println("Test d'effacement fructueux");
-            c1=new UtilisateurDB("Chateau","bla3","BLASPHEME","BATSITE","04727789");
+            c1=new UtilisateurRoomDB(30, "blabla");
             GestCRUD.create(c1);
-			String pseu=c1.getPseudo();
+			c1.readPseudoRoom();
+			int idUr=c1.getIdUtilisateurRoom();
             GestCRUD.delete(c1);
-            c2=new UtilisateurDB(pseu);
+            c2=new UtilisateurRoomDB();
+			c2.setIdUtilisateurRoom(idUr);
             GestCRUD.read(c2);
             System.out.println("c2 ="+c2);
             System.out.println("BAD");
@@ -121,37 +141,7 @@ public class TestUtilisateurRoom
              
         }
         
-        try
-        { 
-            System.out.println("Test mise Ã  jour");
-            c1=new UtilisateurDB("Amandarine3","am3","Vandevoir","Amandine","0472/345789");
-            GestCRUD.create(c1);
-			String pseu=c1.getPseudo();
-			c1.setMotdepasse("amandine3");
-            c1.setNom("nouvnom");
-            c1.setPrenom("nouvprenom");
-            c1.setNumgsm("0472/444444");
-            GestCRUD.update(c1);
-            c2=new UtilisateurDB(pseu);
-            GestCRUD.read(c2);
-            c1.setPseudo(pseu);
-            c1.delete();
-            System.out.println("OK");
-        }
-        catch(Exception e)
-        {
-            System.out.println("BAD exception de mise Ã  jour "+e);
-        }
-        try
-        { 
-            c1.delete();
-        }
-        catch(Exception e)
-        {
-            
-        }
         
         
     }
 }
- 
