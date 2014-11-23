@@ -163,6 +163,7 @@ public class RoomDB extends Room implements CRUD
 						a.setPseudo(rs.getString("PSEUDO"));
 						a.setDate(rs.getDate("DATEPOST"));
 						a.setContenu(rs.getString("CONTENU"));
+						resultat.add(a);
 					}
 					return resultat;
 				}
