@@ -156,7 +156,7 @@ public class RoomDB extends Room implements CRUD
 		try{
             	cstmt = dbConnect.prepareStatement(query);
             	cstmt.setInt(1,idroom);
-            	ResultSet rs=cstmt.executeQuery(query);
+            	ResultSet rs=cstmt.executeQuery();
 				if(rs.isBeforeFirst()){					
 					while(rs.next()){
 						a=new MessageDB();
