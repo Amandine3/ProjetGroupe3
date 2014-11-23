@@ -20,7 +20,7 @@ public class testNonCrudSupp{
         RoomDB.setConnection(con);
 		UtilisateurRoomDB.setConnection(con);
 		try{
-			System.out.println("Test deux mÃ©thodes non crud positif");
+			System.out.println("Test deux méthodes non crud positif");
 			ArrayList<Integer> a=UtilisateurRoomDB.readRoom("Aurelien");
 			System.out.println("1");
 			ArrayList<MessageDB> b=RoomDB.getMessageRoom(31);
@@ -38,7 +38,7 @@ public class testNonCrudSupp{
 		}
 		try{
 			System.out.println("Test non fructueux");
-			ArrayList<Integer> a=UtilisateurRoomDB.readRoom("nainconnu");
+			ArrayList<Integer> a=UtilisateurRoomDB.readRoom("inconnu");
 			System.out.println("BAD");
 			for (int i=0;i<a.size();i++){
 				System.out.println(a.get(i));
