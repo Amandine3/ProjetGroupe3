@@ -26,7 +26,7 @@ public class TestUtilisateurRoom
         {
         	  System.out.println("Test ajout utilisateurRoom");
         	  //pseudo, mp, nom, prenom, numgsm
-              c1=new UtilisateurRoomDB(30, "Blabla");
+              c1=new UtilisateurRoomDB(30, "Ametau");
               GestCRUD.create(c1);
 			  c1.readPseudoRoom();
               int idUtilisateurRoom=c1.getIdUtilisateurRoom();
@@ -117,7 +117,7 @@ public class TestUtilisateurRoom
         try
         {
             System.out.println("Test d'effacement fructueux");
-            c1=new UtilisateurRoomDB(30, "blabla");
+            c1=new UtilisateurRoomDB(30, "Blabla");
             GestCRUD.create(c1);
 			c1.readPseudoRoom();
 			int idUr=c1.getIdUtilisateurRoom();
