@@ -88,7 +88,7 @@ public class TestUtilisateurRoom
         {
         	  System.out.println("Test ajout infructueux dans room qui n'existe pas");
               c1=new UtilisateurRoomDB(28, "Blabla");
-			  c1.readPseudoRoom();
+			  c1.create();
               System.out.println("BAD ");
         }
         catch(Exception e)
@@ -108,7 +108,7 @@ public class TestUtilisateurRoom
         {
         	  System.out.println("Test ajout  infructueux utilisateur qui n'existe pas");
               c1=new UtilisateurRoomDB(30, "azertyuio");
-              c1.readPseudoRoom();
+              c1.create();
 			  System.out.println("BAD ");
         }
         catch(Exception e)
