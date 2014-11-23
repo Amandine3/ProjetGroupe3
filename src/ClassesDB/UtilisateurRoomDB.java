@@ -179,7 +179,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 			cstmt=dbConnect.prepareCall(query);
 			cstmt.setString(1, pseudo);
 			ResultSet rs=cstmt.executeQuery();
-			if(rs.isBeforeFirst(){
+			if(rs.isBeforeFirst()){
 				while(rs.next())
 				{
 					resultat.add(rs.getInt("IDROOM"));
@@ -187,7 +187,7 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 				return resultat;
 			}
 			else{
-				throw new Exception("Erreur Utilisateur inconnu"+e.getMessage());
+				throw new Exception("Erreur Utilisateur inconnu");
 			}
 		}
 		catch(Exception e)

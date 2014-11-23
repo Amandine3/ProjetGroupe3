@@ -1,5 +1,11 @@
 package tests;
-
+/**
+ * Classe testNonCrudSupp
+ * @author Amandine Vandevoir & Aurélien Vandaele
+ */
+import ClassesDB.*;
+import myconnections.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 public class testNonCrudSupp{
 	public static void main(String[] args){
@@ -22,7 +28,7 @@ public class testNonCrudSupp{
 			for (int i=0;i<a.size();i++){
 				System.out.println(a.get(i));
 			}
-			for(int j=0;i<b.size();j++){
+			for(int j=0;j<b.size();j++){
 				System.out.println(b.get(j));
 			}
 			System.out.println("OK");
@@ -45,7 +51,7 @@ public class testNonCrudSupp{
 			System.out.println("test non fructueux 2");
 			ArrayList<MessageDB> b=RoomDB.getMessageRoom(5);
 			System.out.println("BAD");
-			for(int j=0;i<b.size();j++){
+			for(int j=0;j<b.size();j++){
 				System.out.println(b.get(j));
 			}
 		}
