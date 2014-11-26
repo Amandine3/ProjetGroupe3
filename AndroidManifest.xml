@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CreerRoom"
+            android:label="@string/title_activity_creer_room" >
+        </activity>
+        <activity
+            android:name=".CreerRoom2"
+            android:label="@string/title_activity_creer_room2" >
+        </activity>
     </application>
 
 </manifest>
