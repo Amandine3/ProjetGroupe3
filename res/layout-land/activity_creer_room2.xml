@@ -31,26 +31,29 @@
         android:text="@string/button1"
         android:width="80dp" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="17dp"
-        android:text="@string/textview2"
-        android:textSize="15sp" 
-        android:textStyle="bold" />
-    
         <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView1"
+            android:layout_marginTop="42dp"
             android:choiceMode="multipleChoice"
             android:paddingTop="20dp"
             android:scrollbars="vertical" >
+        </ListView>
 
-    </ListView>
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/listView1"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="34dp"
+            android:text="@string/textview2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
 </RelativeLayout>
 </ScrollView>

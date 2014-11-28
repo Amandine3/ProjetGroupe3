@@ -29,17 +29,6 @@
         android:text="@string/button1"
         android:width="80dp"/>
 
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:choiceMode="multipleChoice"
-        android:paddingTop="80dp"
-        android:scrollbars="vertical" >
-
-    </ListView>
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -50,6 +39,17 @@
         android:text="@string/textview2"
         android:textSize="15sp"
         android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="34dp"
+        android:choiceMode="multipleChoice"
+        android:scrollbars="vertical" >
+    </ListView>
 
 </RelativeLayout>
 </ScrollView>
