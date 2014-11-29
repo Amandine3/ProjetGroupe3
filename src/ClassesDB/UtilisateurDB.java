@@ -204,4 +204,43 @@ public class UtilisateurDB extends Utilisateur implements CRUD
            }
      }
   
+	public static ArrayList<UtilisateurDB> getListUser(){
+		ArrayList<UtilisateurDB> retour= new ArrayList();
+		PreparedStatement cstmt=null;
+		try{
+			String query= "Select pseudo, numgsm from utilisateur;";
+			cstmt = dbConnect.prepareStatement(query);
+        	cstmt.setString(1,this.pseudo);
+        	ResultSet rs=cstmt.executeQuery();
+        	if(rs.isBeforeFirst()){
+				UtilisateurDB a;
+	        	while(rs.next())
+	        	{
+					a=new UtilisateurDB;
+	        		a.setPseudo(rs.getString("PSEUDO"));
+	        		a.setNumgsm(rs.getString("NUMGSM"));
+					retour.add(a);
+	        	}
+        	}
+        	else
+        		throw new Exception();
+			return retour;
+        
+        }
+        catch(Exception e)
+        {
+            throw new Exception("Erreur lors de la lecture"+e.getMessage());
+        }
+        finally
+        {
+            try
+            {
+               cstmt.close();
+            }
+            catch (Exception e)
+            {
+                
+            }
+        }
+			
 }
