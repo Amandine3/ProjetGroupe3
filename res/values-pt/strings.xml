@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Chat Condorcet</string>
+    <string name="hello_world">Olá a todos!</string>
+    <string name="action_settings">Parâmetros</string>
+    <string name="title_activity_creer_room">Criar uma sala</string>
+    <string name="textview1">Você deseja criar uma sala?</string>
+    <string name="boutonOk"> OK </string>
+    <string name="boutonAnnuler"> MÉGSE </string>
+    <string name="title_activity_creer_room2">Criar uma sala</string>
+    <string name="textview2">Válassza ki a szoba résztvevője(s): </string>
+    <string name="button1">ÉRVÉNYESÍT</string>
+
+</resources>
