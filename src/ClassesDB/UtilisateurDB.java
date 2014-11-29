@@ -1,5 +1,6 @@
 package ClassesDB;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Classe UtilisateurDB (classe de mappage poo-relationnel utilisateur)
@@ -204,19 +205,18 @@ public class UtilisateurDB extends Utilisateur implements CRUD
            }
      }
   
-	public static ArrayList<UtilisateurDB> getListUser(){
+	public static ArrayList<UtilisateurDB> getListUser() throws Exception{
 		ArrayList<UtilisateurDB> retour= new ArrayList();
 		PreparedStatement cstmt=null;
 		try{
 			String query= "Select pseudo, numgsm from utilisateur;";
 			cstmt = dbConnect.prepareStatement(query);
-        	cstmt.setString(1,this.pseudo);
         	ResultSet rs=cstmt.executeQuery();
         	if(rs.isBeforeFirst()){
 				UtilisateurDB a;
 	        	while(rs.next())
 	        	{
-					a=new UtilisateurDB;
+					a=new UtilisateurDB();
 	        		a.setPseudo(rs.getString("PSEUDO"));
 	        		a.setNumgsm(rs.getString("NUMGSM"));
 					retour.add(a);
@@ -243,4 +243,5 @@ public class UtilisateurDB extends Utilisateur implements CRUD
             }
         }
 			
+	}
 }
