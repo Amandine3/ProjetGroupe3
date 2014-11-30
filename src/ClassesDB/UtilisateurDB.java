@@ -206,12 +206,12 @@ public class UtilisateurDB extends Utilisateur implements CRUD
      }
   
 	public static ArrayList<UtilisateurDB> getListUser() throws Exception{
-		ArrayList<UtilisateurDB> retour= new ArrayList();
+		ArrayList<UtilisateurDB> retour= new ArrayList<UtilisateurDB>();
 		PreparedStatement cstmt=null;
 		try{
 			String query= "Select pseudo, numgsm from utilisateur;";
 			cstmt = dbConnect.prepareStatement(query);
-        	ResultSet rs=cstmt.executeQuery();
+        	ResultSet rs=cstmt.executeQuery(); 
         	if(rs.isBeforeFirst()){
 				UtilisateurDB a;
 	        	while(rs.next())
