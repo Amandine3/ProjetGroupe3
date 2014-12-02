@@ -1,7 +1,10 @@
 package com.example.projetgroupe3;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+
 import myconnections.DBConnection;
+import ClassesDB.RoomDB;
 import ClassesDB.UtilisateurDB;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,9 +13,10 @@ import android.view.MenuItem;
 import android.util.Log;
 import android.os.AsyncTask;
 import android.app.ProgressDialog;
+import android.content.Intent;
 
 public class CreerRoom2 extends ActionBarActivity {
-
+	private ArrayList<UtilisateurDB> liste;
 	private Connection con = null;
 	 
 	@Override
@@ -20,7 +24,7 @@ public class CreerRoom2 extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_creer_room2);
 		 MyAccesDB adb = new MyAccesDB(CreerRoom2.this);
-        adb.execute();
+         adb.execute();
 	}
 
 	@Override
@@ -61,13 +65,13 @@ public class CreerRoom2 extends ActionBarActivity {
 	    private ProgressDialog pgd=null;
 
 
-				public MyAccesDB(MainActivity pActivity) {
+				public MyAccesDB(CreerRoom2 pActivity) {
 
 					link(pActivity);
 					// TODO Auto-generated constructor stub
 				}
 
-				private void link(MainActivity pActivity) {
+				private void link(CreerRoom2 pActivity) {
 					// TODO Auto-generated method stub
 
 
@@ -97,8 +101,11 @@ public class CreerRoom2 extends ActionBarActivity {
 				   }
              
 			        try{
-
-			        	UtilisateurDB.getListUser();
+			        	Intent i=new Intent();
+			        	RoomDB ro=new RoomDB(i.getStringExtra("PSEUDO"));
+			        	ro.create();
+			        	liste=UtilisateurDB.getListUser();
+			        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
 
 			        }
 			        catch(Exception e){
@@ -112,10 +119,10 @@ public class CreerRoom2 extends ActionBarActivity {
 				}
 
 				protected void onPostExecute(Boolean result){
-					// ce qui se passe après l'accès à la DB se met dans le OnPostExecute
+					
 					 super.onPostExecute(result);
 					  pgd.dismiss();
-					  //mettre le résultat dans la list view
+					  
 
 				}
 
