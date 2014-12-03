@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.util.Log;
 import android.os.AsyncTask;
 import android.app.ProgressDialog;
@@ -105,7 +107,14 @@ public class CreerRoom2 extends ActionBarActivity {
 			        	RoomDB ro=new RoomDB(i.getStringExtra("PSEUDO"));
 			        	ro.create();
 			        	liste=UtilisateurDB.getListUser();
+			        	ListView list;
+			        	ArrayList<String> exemple=new ArrayList<String>();
+			        	for (int j=0;j<liste.size();j++){
+			        		exemple.add(liste.get(j).getPseudo());
+			        	}
 			        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
+			        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice,exemple);
+			    		list.setAdapter(adapter);
 
 			        }
 			        catch(Exception e){
