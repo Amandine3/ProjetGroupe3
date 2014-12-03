@@ -8,17 +8,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
 	Button boutonOk=null;
+	Button bannuler = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_creer_room);
 		boutonOk=(Button)findViewById(R.id.button1);
-
+		bannuler=(Button)findViewById(R.id.button2);
 		
 		boutonOk.setOnClickListener(
 				new OnClickListener(){
@@ -33,8 +35,13 @@ public class MainActivity extends ActionBarActivity {
 					}//fin méthode onClick
 				  }//fin classe onClickLister
 				);//fin paramétrage méthode setOnClickListener
-	}
 
+	}
+	public void bannuler(View v)
+	{
+		Toast.makeText(this, R.string.pasEnCours , Toast.LENGTH_SHORT).show();
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

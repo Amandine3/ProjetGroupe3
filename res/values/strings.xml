@@ -11,5 +11,6 @@
     <string name="title_activity_creer_room2">Creer une room</string>
     <string name="textview2">Veuillez choisir le(s) participant(s) à la room : </string>
     <string name="button1">VALIDER</string>
+    <string name="pasEnCours"> Cette option n\'est pas encore valide ! </string>
 
 </resources>
