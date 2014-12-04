@@ -104,13 +104,16 @@ public class CreerRoom2 extends ActionBarActivity {
              
 			        try{
 			        	Intent i=new Intent();
-			        	RoomDB ro=new RoomDB(i.getStringExtra("PSEUDO"));
+			        	String pseudo=i.getStringExtra("PSEUDO");
+			        	RoomDB ro=new RoomDB(pseudo);
 			        	ro.create();
 			        	liste=UtilisateurDB.getListUser();
-			        	ListView list;
+			        	ListView list=(ListView)findViewById(R.id.listView1);
 			        	ArrayList<String> exemple=new ArrayList<String>();
 			        	for (int j=0;j<liste.size();j++){
-			        		exemple.add(liste.get(j).getPseudo());
+			        		if(!liste.get(j).getPseudo().equals(pseudo)){
+			        			exemple.add(liste.get(j).getPseudo());
+			        		}
 			        	}
 			        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
 			        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice,exemple);
