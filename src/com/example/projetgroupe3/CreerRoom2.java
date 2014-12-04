@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.util.Log;
 import android.os.AsyncTask;
 import android.app.ProgressDialog;
@@ -20,7 +21,9 @@ import android.content.Intent;
 public class CreerRoom2 extends ActionBarActivity {
 	private ArrayList<UtilisateurDB> liste;
 	private Connection con = null;
-	 
+	RoomDB ro;
+	String pseudo; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -82,24 +85,71 @@ public class CreerRoom2 extends ActionBarActivity {
 				protected void onPreExecute(){
 					 super.onPreExecute();
 			         pgd=new ProgressDialog(CreerRoom2.this);
-					 pgd.setMessage("Connexion en cours");
+					 pgd.setMessage("Connexion en cours...");
 					 pgd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		     		 pgd.show();
 
 				}
 
 				@Override
-				protected Boolean doInBackground(String... arg0) {
+				protected Boolean doInBackground(String... arg0)
+				{
+					
+			        
+                    if(con==null)
+                    {
+                            con = new DBConnection().getConnection();
+                            if(con==null)
+                            {
+                                    resultat = "ECHEC de la connexion";
+                                    Log.d("Con","Problème Connexion");
+                                    return false;
+                            }
+                            Log.d("Con","Connexion OK");
+                           
 
+                            UtilisateurDB.setConnection(con);
+                            RoomDB.setConnection(con);
+                            Log.d("UTILISATEURDB","utilisateurdb");
+                    
+                    }  
+                    try{
+                    	Log.d("DANS TRY","try");
+                            liste= UtilisateurDB.getListUser();
+                            Log.d("Uts :","liste ok");
+                            for(int i=0; i<liste.size();i++)
+                            {
+                            	Log.d("ELEMENT","Elt"+i+"est: "+liste.get(i));
+                            }
+   						   // Intent i=new Intent();
+				        	//pseudo=i.getStringExtra("PSEUDO");
+                            pseudo="Aurelien"; //pseudo en dur pour l'instant
+                            Log.d("ps","ps");
+				        	ro=new RoomDB(pseudo);
+				        	Log.d("iii","ii");
+				        	ro.create();
+				        	Log.d("Ro : ", "ro ok");
+                    }
+                    catch(Exception e) {
+                    	Log.d("Dans catch","catch");
+                            resultat = "Erreur" +e.getMessage();
+                            return false;
+                    }
+                    return true; 
+                  }
+				
+				/*Log.d("Dans DoInBackground","pff");
 				   if(con==null)
 				   {
 					   	con = new DBConnection().getConnection();
 				    	if(con==null)
 				    	{
 				    		resultat="ECHEC de la Connexion !";
+				    		Log.d("PAS BON", resultat);
 				    		return false;
 					    }
 					   UtilisateurDB.setConnection(con);
+					   Log.d("apres UtDB","pas bon");
 				   }
              
 			        try{
@@ -107,6 +157,7 @@ public class CreerRoom2 extends ActionBarActivity {
 			        	String pseudo=i.getStringExtra("PSEUDO");
 			        	RoomDB ro=new RoomDB(pseudo);
 			        	ro.create();
+			        	Log.d("apres RO.CREATE()" , "cav");
 			        	liste=UtilisateurDB.getListUser();
 			        	ListView list=(ListView)findViewById(R.id.listView1);
 			        	ArrayList<String> exemple=new ArrayList<String>();
@@ -127,13 +178,30 @@ public class CreerRoom2 extends ActionBarActivity {
 			         }
 
 
-					return true;
-				}
+					return true;*/
+				
 
 				protected void onPostExecute(Boolean result){
 					
 					 super.onPostExecute(result);
 					  pgd.dismiss();
+					 if(result)
+					 {
+
+
+				        	Log.d("apres RO.CREATE()" , "cav");
+				        	//liste=UtilisateurDB.getListUser();
+				        	ListView list=(ListView)findViewById(R.id.listView1);
+				        	ArrayList<String> exemple=new ArrayList<String>();
+				        	for (int j=0;j<liste.size();j++){
+				        		if(!liste.get(j).getPseudo().equals(pseudo)){
+				        			exemple.add(liste.get(j).getPseudo());
+				        		}
+				        	}
+				        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
+				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice,exemple);
+				    		list.setAdapter(adapter);
+					 }
 					  
 
 				}

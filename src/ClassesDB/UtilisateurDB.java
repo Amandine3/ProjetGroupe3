@@ -57,6 +57,8 @@ public class UtilisateurDB extends Utilisateur implements CRUD
     public static void setConnection(Connection nouvelledbConnect)
     {
         dbConnect=nouvelledbConnect;
+        System.out.println("SET CONNECTION : "+dbConnect);
+        
     }
     
    /**
@@ -206,24 +208,39 @@ public class UtilisateurDB extends Utilisateur implements CRUD
      }
   
 	public static ArrayList<UtilisateurDB> getListUser() throws Exception{
+		System.out.println("1");
 		ArrayList<UtilisateurDB> retour= new ArrayList<UtilisateurDB>();
+		System.out.println("2");
 		PreparedStatement cstmt=null;
+		System.out.println("3");
 		try{
-			String query= "Select pseudo, numgsm from utilisateur;";
+			System.out.println("4");
+			String query= "SELECT PSEUDO, NUMGSM FROM UTILISATEUR";
+			System.out.println("5");
 			cstmt = dbConnect.prepareStatement(query);
-        	ResultSet rs=cstmt.executeQuery(); 
+			System.out.println("CSTMt : " + cstmt);
+			System.out.println("6");
+        	ResultSet rs=cstmt.executeQuery();
+        	System.out.println("7");
         	if(rs.isBeforeFirst()){
+        		System.out.println("IF");
 				UtilisateurDB a;
+				System.out.println("8");
 	        	while(rs.next())
 	        	{
 					a=new UtilisateurDB();
+					System.out.println("9");
 	        		a.setPseudo(rs.getString("PSEUDO"));
+	        		System.out.println("10");
 	        		a.setNumgsm(rs.getString("NUMGSM"));
+	        		System.out.println("11");
 					retour.add(a);
+					System.out.println("12");
 	        	}
         	}
         	else
         		throw new Exception();
+        		System.out.println("ELSE");
 			return retour;
         
         }
