@@ -212,9 +212,10 @@ public class CreerRoom2 extends ActionBarActivity {
 				        		}
 				        	}
 				        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
-				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice,exemple);
+				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice, exemple);
 				        	Log.d("ARRAYADAPT","arrayadapt");
 				    		list.setAdapter(adapter);
+				    		
 				    		
 				    		Log.d("FIN","fin");
 					 }
