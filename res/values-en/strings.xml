@@ -12,5 +12,6 @@
     <string name="textview2">Please choose the participant(s) of that room : </string>
     <string name="button1"> VALIDATE </string>
     <string name="pasEnCours"> This option is not valid yet ! </string>
+    <string name="msg1"> Sending and receiving messages is not possible yet because it\'s another part of the application (another Use Case)</string>
 
 </resources>

@@ -230,11 +230,14 @@ public class CreerRoom2 extends ActionBarActivity {
 				    						SparseBooleanArray elts=list.getCheckedItemPositions();
 				    						UtilisateurRoomDB a;
 				    						 for(int i=0;i<liste.size();i++){
+				    							 Log.d("Boucle FOR", "FOOOR");
 				    							 if(elts.get(i)){
+				    								 Log.d("IF ELTS.get(i)","if elts");
 				    								 a=new UtilisateurRoomDB(ro.getIdRoom(), liste.get(i).getPseudo());
 				    								 try{
+				    									 Log.d("dans try","try");
 				    									 a.create();
-				    									 
+				    									 Log.d("CREATION UT", "creer ok");
 				    								 }
 				    								 catch(Exception e){
 				    									 Log.d("Erreur creation utilisateur room n°"+i, e.getMessage());
@@ -242,7 +245,8 @@ public class CreerRoom2 extends ActionBarActivity {
 				    								 
 				    							 }
 				    							 i++;
-				    						 }									
+				    						 }
+				    						 setContentView(R.layout.activity_creer_room3);
 											
 										}
 

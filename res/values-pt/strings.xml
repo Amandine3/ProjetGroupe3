@@ -12,5 +12,5 @@
     <string name="textview2">Selecione o participante(s)</string>
     <string name="button1">VALIDAR</string>
     <string name="pasEnCours">Esta opção não é válida!</string>
-
+	<string name="msg1">Envio e recebimento de mensagens ainda não é possível porque é outra parte da aplicação</string>
 </resources>

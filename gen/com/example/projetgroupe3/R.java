@@ -1216,8 +1216,9 @@ containing a value of this type.
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_creer_room=0x7f030018;
         public static final int activity_creer_room2=0x7f030019;
-        public static final int activity_main=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int activity_creer_room3=0x7f03001a;
+        public static final int activity_main=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
         public static final int creer_room=0x7f0c0000;
@@ -1271,6 +1272,7 @@ containing a value of this type.
         public static final int boutonOk=0x7f0a0012;
         public static final int button1=0x7f0a0016;
         public static final int hello_world=0x7f0a000e;
+        public static final int msg1=0x7f0a0018;
         public static final int pasEnCours=0x7f0a0017;
         public static final int textview1=0x7f0a0011;
         public static final int textview2=0x7f0a0015;
