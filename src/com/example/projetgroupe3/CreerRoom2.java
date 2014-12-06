@@ -198,22 +198,24 @@ public class CreerRoom2 extends ActionBarActivity {
 				        	ArrayList<String> exemple=new ArrayList<String>();
 				        	String aajou;
 				        	Log.d("avant boucle", "avant");
+				        	int i=0;
 				        	for (int j=0;j<liste.size();j++){
 				        		Log.d("Avant if boucle", "avant if bc"+liste.get(j).getPseudo());
 				        		if(!liste.get(j).getPseudo().equals(pseudo)){
 				        			aajou=liste.get(j).getPseudo();
 				        			Log.d("IF BOUCLE", liste.get(j).getPseudo());
-				        			
 				        			Log.d("AVANT EXEMPLE ADD", "avant exemple add221212"+ aajou);
 				        			exemple.add(aajou);
 				        			Log.d("Essai", "1212");
-				        			Log.d("Ajouté : ", "ici :" + exemple.get(j));
+				        			Log.d("Ajouté : ", "ici :" + exemple.get(i));
+				        			i++;
 				        		}
 				        	}
 				        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
 				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice,exemple);
 				        	Log.d("ARRAYADAPT","arrayadapt");
 				    		list.setAdapter(adapter);
+				    		
 				    		Log.d("FIN","fin");
 					 }
 					  
