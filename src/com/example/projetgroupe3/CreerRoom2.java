@@ -2,18 +2,24 @@ package com.example.projetgroupe3;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import myconnections.DBConnection;
 import ClassesDB.RoomDB;
 import ClassesDB.UtilisateurDB;
+import ClassesDB.UtilisateurRoomDB;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.os.AsyncTask;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,9 +27,10 @@ import android.content.Intent;
 public class CreerRoom2 extends ActionBarActivity {
 	private ArrayList<UtilisateurDB> liste;
 	private Connection con = null;
-	RoomDB ro;
-	String pseudo; 
-	
+	private Button accepte=null;
+	private RoomDB ro;
+	private String pseudo; 
+	private ListView list=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -107,7 +114,7 @@ public class CreerRoom2 extends ActionBarActivity {
                             }
                             Log.d("Con","Connexion OK");
                            
-
+                            UtilisateurRoomDB.setConnection(con);
                             UtilisateurDB.setConnection(con);
                             RoomDB.setConnection(con);
                             Log.d("UTILISATEURDB","utilisateurdb");
@@ -192,8 +199,7 @@ public class CreerRoom2 extends ActionBarActivity {
 
 
 				        	Log.d("apres RO.CREATE()" , "cav");
-				        	//liste=UtilisateurDB.getListUser();
-				        	ListView list=(ListView)findViewById(R.id.listView1);
+				        	list=(ListView)findViewById(R.id.listView1);
 				        	Log.d("list minuscule","list minus");
 				        	ArrayList<String> exemple=new ArrayList<String>();
 				        	String aajou;
@@ -215,8 +221,33 @@ public class CreerRoom2 extends ActionBarActivity {
 				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice, exemple);
 				        	Log.d("ARRAYADAPT","arrayadapt");
 				    		list.setAdapter(adapter);
-				    		
-				    		
+				    		accepte=(Button)findViewById(R.id.button1);
+				    		accepte.setOnClickListener(
+				    				new OnClickListener(){
+
+										@Override
+										public void onClick(View v) {
+				    						SparseBooleanArray elts=list.getCheckedItemPositions();
+				    						UtilisateurRoomDB a;
+				    						 for(int i=0;i<liste.size();i++){
+				    							 if(elts.get(i)){
+				    								 a=new UtilisateurRoomDB(ro.getIdRoom(), liste.get(i).getPseudo());
+				    								 try{
+				    									 a.create();
+				    									 
+				    								 }
+				    								 catch(Exception e){
+				    									 Log.d("Erreur creation utilisateur room n°"+i, e.getMessage());
+				    								 }
+				    								 
+				    							 }
+				    							 i++;
+				    						 }									
+											
+										}
+
+								
+				    		});
 				    		Log.d("FIN","fin");
 					 }
 					  
