@@ -42,7 +42,7 @@ public class Utilisateur
      */
     public String getPseudo()
     {
-        return pseudo;
+        return this.pseudo;
     }
     
     /**
