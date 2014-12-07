@@ -204,7 +204,19 @@ public class CreerRoom2 extends ActionBarActivity {
 				        	ArrayList<String> exemple=new ArrayList<String>();
 				        	String aajou;
 				        	Log.d("avant boucle", "avant");
+				        	Iterator it=liste.iterator();
 				        	int i=0;
+				        	while(it.hasNext()){
+				        		it.next();
+				        		Log.d("Pendant boucle", liste.get(i).getPseudo());
+				        		if(liste.get(i).getPseudo().equals(pseudo))
+				        			it.remove();
+				        		else{
+				        			exemple.add(liste.get(i).getPseudo());
+				        			i++;
+				        		}
+				        	}
+				        	/*int i=0;
 				        	for (int j=0;j<liste.size();j++){
 				        		Log.d("Avant if boucle", "avant if bc"+liste.get(j).getPseudo());
 				        		if(!liste.get(j).getPseudo().equals(pseudo)){
@@ -216,7 +228,8 @@ public class CreerRoom2 extends ActionBarActivity {
 				        			Log.d("Ajouté : ", "ici :" + exemple.get(i));
 				        			i++;
 				        		}
-				        	}
+				        		
+				        	}*/
 				        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
 				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice, exemple);
 				        	Log.d("ARRAYADAPT","arrayadapt");
@@ -229,11 +242,14 @@ public class CreerRoom2 extends ActionBarActivity {
 										public void onClick(View v) {
 				    						SparseBooleanArray elts=list.getCheckedItemPositions();
 				    						UtilisateurRoomDB a;
+				    						Log.d("MON ARRAY  contient :"+(elts.size()+1),"elements");
 				    						 for(int i=0;i<liste.size();i++){
-				    							 Log.d("Boucle FOR", "FOOOR");
+				    							 Log.d("Boucle FOR", "FOOOR"+liste.size());
+				    							 Log.d("LISTE => ELTS(get(i)) aff liste ", " element n° " + i +": : "+elts.get(i));
 				    							 if(elts.get(i)){
-				    								 Log.d("IF ELTS.get(i)","if elts");
+				    								 Log.d("IF ELTS.get(i)","if elts"+ro.getIdRoom()+"   "+liste.get(i).getPseudo());
 				    								 a=new UtilisateurRoomDB(ro.getIdRoom(), liste.get(i).getPseudo());
+				    								 Log.d("a: ", a.toString());
 				    								 try{
 				    									 Log.d("dans try","try");
 				    									 a.create();
@@ -244,8 +260,8 @@ public class CreerRoom2 extends ActionBarActivity {
 				    								 }
 				    								 
 				    							 }
-				    							 i++;
 				    						 }
+				    						 Log.d("Finnnnnnnnnn", "azdsczeradscvefz");
 				    						 setContentView(R.layout.activity_creer_room3);
 											
 										}
