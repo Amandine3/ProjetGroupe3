@@ -1271,7 +1271,10 @@ containing a value of this type.
         public static final int boutonAnnuler=0x7f0a0013;
         public static final int boutonOk=0x7f0a0012;
         public static final int button1=0x7f0a0016;
+        public static final int contsms=0x7f0a001b;
         public static final int hello_world=0x7f0a000e;
+        public static final int message=0x7f0a0019;
+        public static final int messms=0x7f0a001a;
         public static final int msg1=0x7f0a0018;
         public static final int pasEnCours=0x7f0a0017;
         public static final int textview1=0x7f0a0011;

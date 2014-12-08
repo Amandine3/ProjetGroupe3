@@ -13,5 +13,7 @@
     <string name="button1">VALIDER</string>
     <string name="pasEnCours"> Cette option n\'est pas encore valide ! </string>
     <string name="msg1">L\'envoi et la réception de message n\'est pas encore valide car c\'est un autre Use Case</string>
-
+	<string name="message"> Connexion en cours . . .</string>
+	<string name="messms"> Ajout des utilisateurs à la room en cours...</string>
+	<string name="contsms"> Vous êtes convié à rejoindre la room n° : </string>
 </resources>

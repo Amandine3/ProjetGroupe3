@@ -13,5 +13,8 @@
     <string name="button1"> VALIDATE </string>
     <string name="pasEnCours"> This option is not valid yet ! </string>
     <string name="msg1"> Sending and receiving messages is not possible yet because it\'s another part of the application (another Use Case)</string>
-
+	<string name="message"> Connecting . . . </string>
+	<string name="messms"> Adding users in the room ...</string>
+	<string name="contsms"> You are invited to join the room no.: </string>
+	
 </resources>

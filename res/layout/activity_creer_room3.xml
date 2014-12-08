@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="95dp"
-        android:text="@string/msg1" />
+        android:layout_marginTop="95sp"
+        android:text="@string/msg1" 
+        android:layout_weight="1"/>
 
    </RelativeLayout>

@@ -25,7 +25,8 @@ import android.os.AsyncTask;
 import android.app.ProgressDialog;
 import android.content.Intent;
 
-public class CreerRoom2 extends ActionBarActivity {
+public class CreerRoom2 extends ActionBarActivity
+{
 	private ArrayList<UtilisateurDB> liste;
 	private Connection con = null;
 	private Button accepte=null;
@@ -33,7 +34,8 @@ public class CreerRoom2 extends ActionBarActivity {
 	private String pseudo; 
 	private ListView list=null;
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_creer_room2);
 		 MyAccesDB adb = new MyAccesDB(CreerRoom2.this);
@@ -41,59 +43,68 @@ public class CreerRoom2 extends ActionBarActivity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.creer_room2, menu);
 		return true;
 	}
 	
 	@Override
-	public void onDestroy(){
+	public void onDestroy()
+	{
 		super.onDestroy();
-		 try {
+		 try
+		 {
 	          con.close();
 	          con=null;
 	          Log.d("connexion","deconnexion OK");
-	          }
-	          catch (Exception e) {
-	          }
+	     }
+	     catch (Exception e)
+		 {}
 		 Log.d("connexion","deconnexion OK");
 
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_settings)
+		{
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
-	class MyAccesDB extends AsyncTask<String,Integer,Boolean> {
+	class MyAccesDB extends AsyncTask<String,Integer,Boolean>
+	{
 	    private String resultat;
 	    private ProgressDialog pgd=null;
+	    private String stringM = getString(R.string.message);
 
-
-				public MyAccesDB(CreerRoom2 pActivity) {
+				public MyAccesDB(CreerRoom2 pActivity)
+				{
 
 					link(pActivity);
 					// TODO Auto-generated constructor stub
 				}
 
-				private void link(CreerRoom2 pActivity) {
+				private void link(CreerRoom2 pActivity)
+				{
 					// TODO Auto-generated method stub
 
 
 				}
 
-				protected void onPreExecute(){
+				protected void onPreExecute()
+				{
 					 super.onPreExecute();
 			         pgd=new ProgressDialog(CreerRoom2.this);
-					 pgd.setMessage("Connexion en cours...");
+					 pgd.setMessage(stringM);
 					 pgd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		     		 pgd.show();
 
@@ -116,98 +127,49 @@ public class CreerRoom2 extends ActionBarActivity {
                             UtilisateurRoomDB.setConnection(con);
                             UtilisateurDB.setConnection(con);
                             RoomDB.setConnection(con);
-                            Log.d("UTILISATEURDB","utilisateurdb");
                     
                     }  
-                    try{
-                    	Log.d("DANS TRY","try");
+                    try
+                    {
+
                             liste= UtilisateurDB.getListUser();
-                            Log.d("Uts :","liste ok");
                             for(int i=0; i<liste.size();i++)
                             {
                             	Log.d("ELEMENT","Elt"+i+"est: "+liste.get(i));
                             }
-   						   // Intent i=new Intent();
-				        	//pseudo=i.getStringExtra("PSEUDO");
+
                             pseudo="Aurelien"; //pseudo en dur pour l'instant
-                            Log.d("ps","ps");
 				        	ro=new RoomDB(pseudo);
-				        	Log.d("iii","ii");
 				        	ro.create();
-				        	Log.d("Ro : ", "ro ok");
+
                     }
-                    catch(Exception e) {
-                    	Log.d("Dans catch","catch");
+                    catch(Exception e)
+                    {
+
                             resultat = "Erreur" +e.getMessage();
                             return false;
                     }
                     return true; 
                   }
 				
-				/*Log.d("Dans DoInBackground","pff");
-				   if(con==null)
-				   {
-					   	con = new DBConnection().getConnection();
-				    	if(con==null)
-				    	{
-				    		resultat="ECHEC de la Connexion !";
-				    		Log.d("PAS BON", resultat);
-				    		return false;
-					    }
-					   UtilisateurDB.setConnection(con);
-					   Log.d("apres UtDB","pas bon");
-				   }
-             
-			        try{
-			        	Intent i=new Intent();
-			        	String pseudo=i.getStringExtra("PSEUDO");
-			        	RoomDB ro=new RoomDB(pseudo);
-			        	ro.create();
-			        	Log.d("apres RO.CREATE()" , "cav");
-			        	liste=UtilisateurDB.getListUser();
-			        	ListView list=(ListView)findViewById(R.id.listView1);
-			        	ArrayList<String> exemple=new ArrayList<String>();
-			        	for (int j=0;j<liste.size();j++){
-			        		if(!liste.get(j).getPseudo().equals(pseudo)){
-			        			exemple.add(liste.get(j).getPseudo());
-			        		}
-			        	}
-			        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
-			        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice,exemple);
-			    		list.setAdapter(adapter);
-
-			        }
-			        catch(Exception e){
-			         resultat="erreur" +e.getMessage();
-			         return false;
-
-			         }
-
-
-					return true;*/
-				
-
-				protected void onPostExecute(Boolean result){
-					Log.d("DANS PostExecute","dans pE");
 					
-					 super.onPostExecute(result);
+
+				protected void onPostExecute(Boolean result)
+				{
+					
+					  super.onPostExecute(result);
 					  pgd.dismiss();
-					  Log.d("Avant if result", "if result avant");
+
 					 if(result)
 					 {
 
-
-				        	Log.d("apres RO.CREATE()" , "cav");
 				        	list=(ListView)findViewById(R.id.listView1);
-				        	Log.d("list minuscule","list minus");
 				        	ArrayList<String> exemple=new ArrayList<String>();
 				        	String aajou;
-				        	Log.d("avant boucle", "avant");
 				        	Iterator it=liste.iterator();
 				        	int i=0;
 				        	while(it.hasNext()){
 				        		it.next();
-				        		Log.d("Pendant boucle", liste.get(i).getPseudo());
 				        		if(liste.get(i).getPseudo().equals(pseudo))
 				        			it.remove();
 				        		else{
@@ -215,23 +177,8 @@ public class CreerRoom2 extends ActionBarActivity {
 				        			i++;
 				        		}
 				        	}
-				        	/*int i=0;
-				        	for (int j=0;j<liste.size();j++){
-				        		Log.d("Avant if boucle", "avant if bc"+liste.get(j).getPseudo());
-				        		if(!liste.get(j).getPseudo().equals(pseudo)){
-				        			aajou=liste.get(j).getPseudo();
-				        			Log.d("IF BOUCLE", liste.get(j).getPseudo());
-				        			Log.d("AVANT EXEMPLE ADD", "avant exemple add221212"+ aajou);
-				        			exemple.add(aajou);
-				        			Log.d("Essai", "1212");
-				        			Log.d("Ajouté : ", "ici :" + exemple.get(i));
-				        			i++;
-				        		}
-				        		
-				        	}*/
-				        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
+				  
 				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice, exemple);
-				        	Log.d("ARRAYADAPT","arrayadapt");
 				    		list.setAdapter(adapter);
 				    		accepte=(Button)findViewById(R.id.button1);
 				    		accepte.setOnClickListener(
@@ -241,23 +188,23 @@ public class CreerRoom2 extends ActionBarActivity {
 										public void onClick(View v) {
 				    					     MyAccesDB2 dd=new MyAccesDB2(CreerRoom2.this);
 				    					     dd.execute();
-				    						 Log.d("Finnnnnnnnnn", "azdsczeradscvefz");
-				    						 setContentView(R.layout.activity_creer_room3);
+				    						
 											
 										}
-
-								
 				    		});
-				    		Log.d("FIN","fin");
 					 }
 					  
 
 				}
 
 			}
-	class MyAccesDB2 extends AsyncTask<String,Integer,Boolean> {
+	class MyAccesDB2 extends AsyncTask<String,Integer,Boolean>
+	{
 	    private String resultat;
 	    private ProgressDialog pgd=null;
+	   
+	    private String mgSMS = getString(R.string.messms);
+	    private String contenuSMS = getString (R.string.contsms);
 
 
 				public MyAccesDB2(CreerRoom2 pActivity) {
@@ -275,7 +222,7 @@ public class CreerRoom2 extends ActionBarActivity {
 				protected void onPreExecute(){
 					 super.onPreExecute();
 			         pgd=new ProgressDialog(CreerRoom2.this);
-					 pgd.setMessage("Connexion en cours...");
+					 pgd.setMessage(mgSMS);
 					 pgd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		     		 pgd.show();
 
@@ -300,16 +247,14 @@ public class CreerRoom2 extends ActionBarActivity {
 					SmsManager ma=SmsManager.getDefault(); 
 					UtilisateurRoomDB a;
 				    for(int i=0;i<liste.size();i++){
-						 Log.d("Boucle FOR", "FOOOR"+liste.size());
 						 Log.d("LISTE => ELTS(get(i)) aff liste ", " element n° " + i +": : "+elts.get(i));
 						 if(elts.get(i)){
 							 Log.d("IF ELTS.get(i)","if elts"+ro.getIdRoom()+"   "+liste.get(i).getPseudo());
 							 a=new UtilisateurRoomDB(ro.getIdRoom(), liste.get(i).getPseudo());
 							 Log.d("a: ", a.toString());
 							 try{
-								 Log.d("dans try","try");
-								 ma.sendTextMessage(liste.get(i).getNumgsm(), null, "Test", null, null);
-								 Log.d("Envoi du sms ", "fait a "+liste.get(i).getNumgsm());
+								 ma.sendTextMessage(liste.get(i).getNumgsm(), null, contenuSMS + ro.getIdRoom(), null, null);
+								 Log.d("ENVOI DU SMS ", " FAIT A : "+liste.get(i).getNumgsm());
 								 a.create();
 								 Log.d("CREATION UT", "creer ok");
 							 }
@@ -320,6 +265,14 @@ public class CreerRoom2 extends ActionBarActivity {
 						 }
 					}
                             return null;
+				}
+				
+				protected void onPostExecute(Boolean result){
+					
+					 super.onPostExecute(result);
+					  pgd.dismiss();
+					  setContentView(R.layout.activity_creer_room3);
+					  
 				}
 	}
 }

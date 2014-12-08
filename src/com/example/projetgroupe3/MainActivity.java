@@ -10,13 +10,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity
+{
 
 	Button boutonOk=null;
 	Button bannuler = null;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_creer_room);
 		boutonOk=(Button)findViewById(R.id.button1);
@@ -29,12 +31,11 @@ public class MainActivity extends ActionBarActivity {
 
 						
 						Intent i = new Intent(MainActivity.this,CreerRoom2.class);
-					  	//pour une arrayList de personnes :i.putParcelableArrayListExtra(ID_LIST, listePersonnes);
 						startActivity(i);
 					
-					}//fin méthode onClick
-				  }//fin classe onClickLister
-				);//fin paramétrage méthode setOnClickListener
+					}
+				  }
+				);
 
 	}
 	public void bannuler(View v)

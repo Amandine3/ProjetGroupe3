@@ -64,17 +64,12 @@ public class UtilisateurRoomDB extends UtilisateurRoom implements CRUD{
 	public void create() throws Exception{
 		CallableStatement cstmt=null;
 		try
-		{    System.out.println("A1");     
+		{        
 			 String query="call createUtilisateurRoom(?,?)"; 
-			 System.out.println("A2");
 			 cstmt = dbConnect.prepareCall(query);
-			 System.out.println("A3");
 			 cstmt.setInt(1, this.idRoom);
-			 System.out.println("A4"+this.idRoom);
 			 cstmt.setString(2, this.pseudo);
-			 System.out.println("A5"+this.pseudo);
 			 cstmt.executeUpdate();
-			 System.out.println("A7");
 		}
 		catch(Exception e)
 		{

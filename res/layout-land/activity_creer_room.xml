@@ -19,9 +19,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="65sp"
         android:text="@string/textview1"
-        android:textSize="20sp" />
+        android:textSize="20sp" 
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/button2"
@@ -30,11 +31,13 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/textView1"
-        android:layout_marginRight="58dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginRight="24sp"
+        android:layout_marginTop="20sp"
+
         android:background="@color/darker_gray"
         android:text="@string/boutonAnnuler"
-        android:width="80dp" />
+        android:width="80sp" 
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/button1"
@@ -44,9 +47,10 @@
         android:layout_alignBaseline="@+id/button2"
         android:layout_alignBottom="@+id/button2"
         android:layout_alignLeft="@+id/textView1"
-        android:layout_marginLeft="52dp"
+        android:layout_marginLeft="26sp"
         android:background="@color/darker_gray"
         android:text="@string/boutonOk"
-        android:width="80dp" />
+        android:width="80sp" 
+        android:layout_weight="1"/>
 
 </RelativeLayout>

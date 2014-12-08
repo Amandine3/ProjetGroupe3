@@ -18,10 +18,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="21sp"
             android:choiceMode="multipleChoice"
-            android:paddingTop="20dp"
-            android:scrollbars="vertical" >
+            android:paddingTop="20sp"
+            android:scrollbars="vertical" 
+            android:layout_weight="1">
         </ListView>
 
         <TextView
@@ -30,10 +31,11 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/listView1"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="19sp"
             android:text="@string/textview2"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" 
+            android:layout_weight="1"/>
 
         <Button
             android:id="@+id/button1"
@@ -45,6 +47,7 @@
             android:layout_alignRight="@+id/listView1"
             android:background="@color/darker_gray"
             android:text="@string/button1"
-            android:width="80dp" />
+            android:width="80sp"
+            android:layout_weight="1" />
 
 </RelativeLayout>

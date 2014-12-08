@@ -13,4 +13,8 @@
     <string name="button1">VALIDAR</string>
     <string name="pasEnCours">Esta opção não é válida!</string>
 	<string name="msg1">Envio e recebimento de mensagens ainda não é possível porque é outra parte da aplicação</string>
+	<string name="message">Conexão atual. . .</string>
+	<string name="messms">A adição de usuários no quarto</string>
+	<string name="contsms">Você está convidado a juntar-se a sala não.:</string>
+		
 </resources>
