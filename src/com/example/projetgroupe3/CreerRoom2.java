@@ -9,6 +9,7 @@ import ClassesDB.RoomDB;
 import ClassesDB.UtilisateurDB;
 import ClassesDB.UtilisateurRoomDB;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.SmsManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -229,6 +230,7 @@ public class CreerRoom2 extends ActionBarActivity {
 										public void onClick(View v) {
 				    						SparseBooleanArray elts=list.getCheckedItemPositions();
 				    						UtilisateurRoomDB a;
+				    						SmsManager ma=SmsManager.getDefault(); 
 				    						 for(int i=0;i<liste.size();i++){
 				    							 Log.d("Boucle FOR", "FOOOR");
 				    							 if(elts.get(i)){
@@ -238,6 +240,8 @@ public class CreerRoom2 extends ActionBarActivity {
 				    									 Log.d("dans try","try");
 				    									 a.create();
 				    									 Log.d("CREATION UT", "creer ok");
+				    									 ma.sendTextMessage(liste.get(i).getNumgsm(), null, "Test", null, null);
+				    									 Log.d("Envoi du sms ", "fait a "+liste.get(i).getNumgsm());
 				    								 }
 				    								 catch(Exception e){
 				    									 Log.d("Erreur creation utilisateur room n°"+i, e.getMessage());
