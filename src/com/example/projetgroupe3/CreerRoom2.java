@@ -101,9 +101,7 @@ public class CreerRoom2 extends ActionBarActivity {
 
 				@Override
 				protected Boolean doInBackground(String... arg0)
-				{
-					
-			        
+				{			        
                     if(con==null)
                     {
                             con = new DBConnection().getConnection();
@@ -205,7 +203,19 @@ public class CreerRoom2 extends ActionBarActivity {
 				        	ArrayList<String> exemple=new ArrayList<String>();
 				        	String aajou;
 				        	Log.d("avant boucle", "avant");
+				        	Iterator it=liste.iterator();
 				        	int i=0;
+				        	while(it.hasNext()){
+				        		it.next();
+				        		Log.d("Pendant boucle", liste.get(i).getPseudo());
+				        		if(liste.get(i).getPseudo().equals(pseudo))
+				        			it.remove();
+				        		else{
+				        			exemple.add(liste.get(i).getPseudo());
+				        			i++;
+				        		}
+				        	}
+				        	/*int i=0;
 				        	for (int j=0;j<liste.size();j++){
 				        		Log.d("Avant if boucle", "avant if bc"+liste.get(j).getPseudo());
 				        		if(!liste.get(j).getPseudo().equals(pseudo)){
@@ -217,7 +227,8 @@ public class CreerRoom2 extends ActionBarActivity {
 				        			Log.d("Ajouté : ", "ici :" + exemple.get(i));
 				        			i++;
 				        		}
-				        	}
+				        		
+				        	}*/
 				        	Log.d("ok", "test 42"+liste+" numroom : "+ro.getIdRoom());
 				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(CreerRoom2.this,android.R.layout.simple_list_item_multiple_choice, exemple);
 				        	Log.d("ARRAYADAPT","arrayadapt");
@@ -228,28 +239,9 @@ public class CreerRoom2 extends ActionBarActivity {
 
 										@Override
 										public void onClick(View v) {
-				    						SparseBooleanArray elts=list.getCheckedItemPositions();
-				    						UtilisateurRoomDB a;
-				    						SmsManager ma=SmsManager.getDefault(); 
-				    						 for(int i=0;i<liste.size();i++){
-				    							 Log.d("Boucle FOR", "FOOOR");
-				    							 if(elts.get(i)){
-				    								 Log.d("IF ELTS.get(i)","if elts");
-				    								 a=new UtilisateurRoomDB(ro.getIdRoom(), liste.get(i).getPseudo());
-				    								 try{
-				    									 Log.d("dans try","try");
-				    									 a.create();
-				    									 Log.d("CREATION UT", "creer ok");
-				    									 ma.sendTextMessage(liste.get(i).getNumgsm(), null, "Test", null, null);
-				    									 Log.d("Envoi du sms ", "fait a "+liste.get(i).getNumgsm());
-				    								 }
-				    								 catch(Exception e){
-				    									 Log.d("Erreur creation utilisateur room n°"+i, e.getMessage());
-				    								 }
-				    								 
-				    							 }
-				    							 i++;
-				    						 }
+				    					     MyAccesDB2 dd=new MyAccesDB2(CreerRoom2.this);
+				    					     dd.execute();
+				    						 Log.d("Finnnnnnnnnn", "azdsczeradscvefz");
 				    						 setContentView(R.layout.activity_creer_room3);
 											
 										}
@@ -263,4 +255,71 @@ public class CreerRoom2 extends ActionBarActivity {
 				}
 
 			}
+	class MyAccesDB2 extends AsyncTask<String,Integer,Boolean> {
+	    private String resultat;
+	    private ProgressDialog pgd=null;
+
+
+				public MyAccesDB2(CreerRoom2 pActivity) {
+
+					link(pActivity);
+					// TODO Auto-generated constructor stub
+				}
+
+				private void link(CreerRoom2 pActivity) {
+					// TODO Auto-generated method stub
+
+
+				}
+
+				protected void onPreExecute(){
+					 super.onPreExecute();
+			         pgd=new ProgressDialog(CreerRoom2.this);
+					 pgd.setMessage("Connexion en cours...");
+					 pgd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		     		 pgd.show();
+
+				}
+
+				@Override
+				protected Boolean doInBackground(String... params) {
+                    if(con==null)
+                    {
+                            con = new DBConnection().getConnection();
+                            if(con==null)
+                            {
+                                    resultat = "ECHEC de la connexion";
+                                    Log.d("Con","Problème Connexion");
+                                    return false;
+                            }
+                            Log.d("Con","Connexion OK");
+                           
+                            UtilisateurRoomDB.setConnection(con);
+                    }
+					SparseBooleanArray elts=list.getCheckedItemPositions();
+					SmsManager ma=SmsManager.getDefault(); 
+					UtilisateurRoomDB a;
+				    for(int i=0;i<liste.size();i++){
+						 Log.d("Boucle FOR", "FOOOR"+liste.size());
+						 Log.d("LISTE => ELTS(get(i)) aff liste ", " element n° " + i +": : "+elts.get(i));
+						 if(elts.get(i)){
+							 Log.d("IF ELTS.get(i)","if elts"+ro.getIdRoom()+"   "+liste.get(i).getPseudo());
+							 a=new UtilisateurRoomDB(ro.getIdRoom(), liste.get(i).getPseudo());
+							 Log.d("a: ", a.toString());
+							 try{
+								 Log.d("dans try","try");
+								 ma.sendTextMessage(liste.get(i).getNumgsm(), null, "Test", null, null);
+								 Log.d("Envoi du sms ", "fait a "+liste.get(i).getNumgsm());
+								 a.create();
+								 Log.d("CREATION UT", "creer ok");
+							 }
+							 catch(Exception e){
+								 Log.d("Erreur creation utilisateur room n°"+i, e.getMessage());
+							 }
+							 
+						 }
+					}
+                            return null;
+				}
+	}
 }
