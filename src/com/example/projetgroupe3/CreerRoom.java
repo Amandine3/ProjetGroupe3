@@ -1,23 +1,53 @@
 package com.example.projetgroupe3;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
 
-public class CreerRoom extends ActionBarActivity {
+public class CreerRoom extends ActionBarActivity
+{
 
+	Button boutonOk=null;
+	Button bannuler = null;
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_creer_room);
-	}
+		boutonOk=(Button)findViewById(R.id.button1);
+		bannuler=(Button)findViewById(R.id.button2);
+		
+		boutonOk.setOnClickListener(
+				new OnClickListener(){
+					
+					public void onClick(View v){
 
+						
+						Intent i = new Intent(CreerRoom.this,CreerRoom2.class);
+						startActivity(i);
+					
+					}
+				  }
+				);
+
+	}
+	public void bannuler(View v)
+	{
+		Toast.makeText(this, R.string.pasEnCours , Toast.LENGTH_SHORT).show();
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.creer_room, menu);
-		return true;
+		return true;      
 	}
 
 	@Override

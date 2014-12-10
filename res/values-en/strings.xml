@@ -16,5 +16,10 @@
 	<string name="message"> Connecting . . . </string>
 	<string name="messms"> Adding users in the room ...</string>
 	<string name="contsms"> You are invited to join the room no.: </string>
+	<string name="textview1RU"> Please choose the room in which you wish to participate: </string>
+	<string name="boutonA"> Join a room </string>
+	<string name="boutonB"> Create a room </string>
+	<string name="spin"> Searching rooms. . .</string>
+	<string name="title_activity_liste_roomut"> Join a room </string>
 	
 </resources>

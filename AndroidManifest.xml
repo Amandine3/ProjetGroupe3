@@ -35,6 +35,10 @@
             android:name=".CreerRoom2"
             android:label="@string/title_activity_creer_room2" >
         </activity>
+        <activity
+            android:name=".ListeRoomUtilisateur"
+            android:label="@string/title_activity_liste_roomut" >
+        </activity>
     </application>
 
 </manifest>

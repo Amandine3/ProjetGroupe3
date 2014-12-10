@@ -13,24 +13,37 @@ import android.widget.Toast;
 public class MainActivity extends ActionBarActivity
 {
 
-	Button boutonOk=null;
-	Button bannuler = null;
+	Button bouton1=null;
+	Button bouton2 = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_creer_room);
-		boutonOk=(Button)findViewById(R.id.button1);
-		bannuler=(Button)findViewById(R.id.button2);
+		setContentView(R.layout.activity_choisir_rejoucreer_room);
+		bouton1=(Button)findViewById(R.id.boutonA);//rejoindre room
+		bouton2=(Button)findViewById(R.id.boutonB);//creer room
 		
-		boutonOk.setOnClickListener(
+		bouton1.setOnClickListener(
 				new OnClickListener(){
 					
 					public void onClick(View v){
 
 						
-						Intent i = new Intent(MainActivity.this,CreerRoom2.class);
+						Intent i = new Intent(MainActivity.this,ListeRoomUtilisateur.class);
+						startActivity(i);
+					
+					}
+				  }
+				);
+	
+		bouton2.setOnClickListener(
+				new OnClickListener(){
+					
+					public void onClick(View v){
+
+						
+						Intent i = new Intent(MainActivity.this,CreerRoom.class);
 						startActivity(i);
 					
 					}

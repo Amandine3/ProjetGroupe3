@@ -16,5 +16,10 @@
 	<string name="message">Conexão atual. . .</string>
 	<string name="messms">A adição de usuários no quarto</string>
 	<string name="contsms">Você está convidado a juntar-se a sala não.:</string>
-		
+	<string name="textview1RU"> Por favor, escolha a sala na qual você deseja participar: </string>
+	<string name="boutonA"> Junte-se a sala </string>
+	<string name="boutonB"> Criar a sala </string>
+	<string name="spin"> Pesquisa quartos. . .</string>
+	<string name="title_activity_liste_roomut"> Junte-se a sala </string>
+	
 </resources>

@@ -2,34 +2,50 @@ package com.example.projetgroupe3;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-import com.example.projetgroupe3.CreerRoom2.MyAccesDB;
+import myconnections.DBConnection;
 
+/*import com.example.projetgroupe3.CreerRoom2.MyAccesDB;
+import com.example.projetgroupe3.CreerRoom2.MyAccesDB2;*/
+
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+//import android.view.View;
+//import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+//import android.widget.Button;
+import android.widget.ListView;
+//import ClassesDB.RoomDB;
+//import ClassesDB.UtilisateurDB;
 import ClassesDB.UtilisateurRoomDB;
 
 public class ListeRoomUtilisateur extends ActionBarActivity{
-	private ArrayList<UtilisateurRoomDB> liste;
+	private ArrayList<Integer> liste;
 	private Connection con;
+	private ListView list=null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_creer_room2);
-		 MyAccesDB adb = new MyAccesDB(ListeRoomUtilisateur.this);
-         adb.execute();
+		Log.d("AAA","AAA");
+		setContentView(R.layout.activity_liste_roomut);
+		Log.d("BBB","BBB");
+		MyAccesDB3 adb = new MyAccesDB3(ListeRoomUtilisateur.this);
+        adb.execute();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.creer_room2, menu);
+		getMenuInflater().inflate(R.menu.creer_room2, menu); 
 		return true;
 	}
 	
@@ -63,9 +79,15 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 		return super.onOptionsItemSelected(item);
 	}
 	
-	class MyAccesDB extends AsyncTask<String,Integer,Boolean>
+	class MyAccesDB3 extends AsyncTask<String,Integer,Boolean>
 	{
-		public MyAccesDB(ListeRoomUtilisateur pActivity)
+		
+	    private String resultat;
+	    private ProgressDialog pgd=null;
+	    private String stringMSp = getString(R.string.spin);
+	    private String pseudo="Aurelien";
+	    
+		public MyAccesDB3(ListeRoomUtilisateur pActivity)
 		{
 
 			link(pActivity);
@@ -78,12 +100,88 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 
 
 		}
+		protected void onPreExecute()
+		{
+			 super.onPreExecute();
+	         pgd=new ProgressDialog(ListeRoomUtilisateur.this);
+			 pgd.setMessage(stringMSp);
+			 pgd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+     		 pgd.show();
 
-		@Override
-		protected Boolean doInBackground(String... params) {
-			// TODO Auto-generated method stub
-			return null;
-		}}
-	
+		}
 
+		
+		 @Override
+				protected Boolean doInBackground(String... arg0)
+				{			        
+                    if(con==null)
+                    {
+                            con = new DBConnection().getConnection();
+                            if(con==null)
+                            {
+                                    resultat = "ECHEC de la connexion";
+                                    Log.d("Con","Problème Connexion");
+                                    return false;
+                            }
+                            Log.d("Con","Connexion OK");
+
+                            UtilisateurRoomDB.setConnection(con);
+                    
+                    }  
+                    try
+                    {
+
+                    		liste= UtilisateurRoomDB.readRoom(pseudo);
+                            for(int i=0; i<liste.size();i++)
+                            {
+                            	Log.d("ELEMENT","Elt"+i+"est: "+liste.get(i));
+                            }
+
+
+                    }
+                    catch(Exception e)
+                    {
+
+                            resultat = "Erreur" +e.getMessage();
+                            return false;
+                    }
+                    return true; 
+                  }
+				
+				
+				protected void onPostExecute(Boolean result)
+				{
+					
+					  super.onPostExecute(result);
+					  pgd.dismiss();
+
+					 if(result)
+					 {
+
+				        	list=(ListView)findViewById(R.id.listView1);
+				        	ArrayList<Integer> exemple=new ArrayList<Integer>();
+				        	String aajou;
+				        	/*Iterator it=liste.iterator();
+				        	int i=0;
+				        	while(it.hasNext()){
+				        		it.next();
+				        		//if(liste.get(i).getPseudo().equals(pseudo))
+				        			//it.remove();
+				        		//else{
+				        			//exemple.add(liste.get(i).getPseudo());
+				        			//i++;
+				        		}
+				        	}*/
+				  
+				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(ListeRoomUtilisateur.this,android.R.layout.simple_list_item_single_choice);
+				    		list.setAdapter(adapter);
+				    	
+					  
+
+				}
+
+			}
+		 
+
+	}
 }

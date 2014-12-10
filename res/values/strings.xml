@@ -16,4 +16,9 @@
 	<string name="message"> Connexion en cours . . .</string>
 	<string name="messms"> Ajout des utilisateurs à la room en cours...</string>
 	<string name="contsms"> Vous êtes convié à rejoindre la room n° : </string>
+	<string name="textview1RU"> Veuillez choisir la room à laquelle vous souhaitez participer : </string>
+	<string name="boutonA"> Rejoindre la room </string>
+	<string name="boutonB"> Créer la room </string>
+	<string name="spin"> Recherche des rooms en cours. . .</string>
+	<string name="title_activity_liste_roomut"> Rejoindre une room</string>
 </resources>
