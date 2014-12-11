@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.example.projetgroupe3.CreerRoom2.MyAccesDB2;
+
 import myconnections.DBConnection;
 
 /*import com.example.projetgroupe3.CreerRoom2.MyAccesDB;
@@ -16,9 +18,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 //import android.view.View;
 //import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 //import android.widget.Button;
 import android.widget.ListView;
 //import ClassesDB.RoomDB;
@@ -29,6 +34,7 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 	private ArrayList<Integer> liste;
 	private Connection con;
 	private ListView list=null;
+	private Button accepte=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -157,28 +163,19 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 
 					 if(result)
 					 {
-
 				        	list=(ListView)findViewById(R.id.listView1);
-				        	ArrayList<Integer> exemple=new ArrayList<Integer>();
-				        	String aajou;
-				        	/*Iterator it=liste.iterator();
-				        	int i=0;
-				        	while(it.hasNext()){
-				        		it.next();
-				        		//if(liste.get(i).getPseudo().equals(pseudo))
-				        			//it.remove();
-				        		//else{
-				        			//exemple.add(liste.get(i).getPseudo());
-				        			//i++;
-				        		}
-				        	}*/
-				  
-				        	ArrayAdapter<String> adapter = new  ArrayAdapter<String>(ListeRoomUtilisateur.this,android.R.layout.simple_list_item_single_choice);
+				        	ArrayAdapter<Integer> adapter = new  ArrayAdapter<Integer>(ListeRoomUtilisateur.this,android.R.layout.simple_list_item_single_choice, liste);
 				    		list.setAdapter(adapter);
-				    	
-					  
+				    		accepte=(Button)findViewById(R.id.boutonVal);
+				    		accepte.setOnClickListener(
+				    				new OnClickListener(){
 
-				}
+										@Override
+										public void onClick(View v) {
+											
+										}
+				    		});
+					 }
 
 			}
 		 
