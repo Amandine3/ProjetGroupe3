@@ -22,5 +22,6 @@
 	<string name="spin"> Pesquisa quartos. . .</string>
 	<string name="title_activity_liste_roomut"> Junte-se a sala </string>
 	<string name="boutonVal"> OK </string>
+	<string name="textviewEnt"> Entre aqui sua mensagem : </string>
 	
 </resources>

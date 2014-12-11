@@ -22,5 +22,6 @@
 	<string name="spin"> Searching rooms. . .</string>
 	<string name="title_activity_liste_roomut"> Join a room </string>
 	<string name="boutonVal"> validate </string>
+	<string name="textviewEnt"> Enter your message here : </string>
 	
 </resources>
