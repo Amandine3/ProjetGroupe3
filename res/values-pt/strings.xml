@@ -21,5 +21,6 @@
 	<string name="boutonB"> Criar a sala </string>
 	<string name="spin"> Pesquisa quartos. . .</string>
 	<string name="title_activity_liste_roomut"> Junte-se a sala </string>
+	<string name="boutonVal"> OK </string>
 	
 </resources>

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1RU"
         android:layout_below="@+id/textView1RU"
-        android:layout_marginTop="60sp"
+        android:layout_marginTop="70sp"
         android:scrollbars="vertical" 
         android:choiceMode="singleChoice"
         android:layout_weight="1">
@@ -23,9 +23,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginLeft="36sp"
+        android:layout_marginTop="27sp"
         android:layout_weight="1"
         android:text="@string/textview1RU" />
+
+    <Button
+        android:id="@+id/boutonVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textview1RU"
+        android:layout_alignBottom="@+id/textview1RU"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="17sp"
+        android:background="@color/darker_gray"
+        android:text="@string/boutonVal" />
     
 </RelativeLayout>
