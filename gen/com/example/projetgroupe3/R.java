@@ -1278,6 +1278,7 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int action_settings=0x7f0a000f;
         public static final int app_name=0x7f0a000d;
+        public static final int autre=0x7f0a0024;
         public static final int boutonA=0x7f0a001d;
         public static final int boutonAnnuler=0x7f0a0013;
         public static final int boutonB=0x7f0a001e;
@@ -1298,6 +1299,7 @@ containing a value of this type.
         public static final int title_activity_creer_room=0x7f0a0010;
         public static final int title_activity_creer_room2=0x7f0a0014;
         public static final int title_activity_liste_roomut=0x7f0a0020;
+        public static final int vous=0x7f0a0023;
     }
     public static final class style {
         /** 
