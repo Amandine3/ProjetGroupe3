@@ -9,14 +9,17 @@ import java.util.TimerTask;
 
 import com.example.projetgroupe3.ListeRoomUtilisateur.MyAccesDB3;
 
+import ClassesDB.MessageDB;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.view.View.OnClickListener;
 
 public class InterieurRoom extends ActionBarActivity{
 	private ArrayList<String> messages;
@@ -38,7 +41,18 @@ public class InterieurRoom extends ActionBarActivity{
 			en.execute();
 		}
 		}, new Date(), 20000);
-		envoi=(Button)findViewById(R.id.envoi);
+		envoi=(Button)findViewById(R.id.boutonenvoi);
+		envoi.setOnClickListener(
+				new OnClickListener(){
+
+					@Override
+					public void onClick(View v) {
+						MessageDB mess=new MessageDB();
+						mess.create();
+						
+					}
+					
+				});
 	}
 
 	@Override
