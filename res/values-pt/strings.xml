@@ -25,5 +25,6 @@
 	<string name="textviewEnt"> Entre aqui sua mensagem : </string>
 	<string name="vous"> Você disse : </string>
 	<string name="autre"> disse : </string>
+	<string name="boutonenvoi"> enviando</string>
 	
 </resources>
