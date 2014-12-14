@@ -305,6 +305,11 @@ public class CreerRoom2 extends ActionBarActivity
 					
 					 super.onPostExecute(result);
 					  pgd.dismiss();
+					  Intent i = new Intent(CreerRoom2.this,InterieurRoom.class);
+					  i.putExtra("pseudo",pseudo);
+					  i.putExtra("idroom", ro.getIdRoom());
+					  startActivity(i);
+					  finish();
 					  setContentView(R.layout.activity_creer_room3);
 					  
 				}

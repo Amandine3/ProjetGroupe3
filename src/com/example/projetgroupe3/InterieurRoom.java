@@ -14,6 +14,7 @@ import com.example.projetgroupe3.ListeRoomUtilisateur.MyAccesDB3;
 import ClassesDB.MessageDB;
 import ClassesDB.RoomDB;
 import ClassesDB.UtilisateurRoomDB;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -56,6 +57,9 @@ public class InterieurRoom extends ActionBarActivity{
 		 * ou sont les méthodes post execute et pre execute ?
 		 * 
 		 */
+      	Intent in = getIntent();
+      	pseudo= in.getStringExtra("pseudo");
+      	idroom=in.getIntExtra("idroom", -1);
 		r = new Reception(InterieurRoom.this);
 		envoi=(Button)findViewById(R.id.boutonenvoi);
 		envoi.setOnClickListener(
@@ -193,8 +197,13 @@ public class InterieurRoom extends ActionBarActivity{
 			try{
 				mess=RoomDB.getMessageRoom(idroom);
 				for (int i=0;i<mess.size();i++){
-					//Faire une meilleure mise en page
-					liste.add(mess.get(i).getPseudo()+mess.get(i).getContenu());
+					if(!mess.get(i).getPseudo().equals(pseudo)){
+						liste.add(mess.get(i).getPseudo()+R.string.autre+mess.get(i).getContenu());
+					}
+					else{
+						liste.add(mess.get(i).getPseudo()+R.string.vous+mess.get(i).getContenu());
+					}
+					liste.add("----------------");
 				}
 			}
 			catch(Exception e){

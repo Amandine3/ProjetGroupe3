@@ -12,10 +12,12 @@ import myconnections.DBConnection;
 import com.example.projetgroupe3.CreerRoom2.MyAccesDB2;*/
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +37,7 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 	private Connection con;
 	private ListView list=null;
 	private Button accepte=null;
+	private String pseudo;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -91,7 +94,6 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 	    private String resultat;
 	    private ProgressDialog pgd=null;
 	    private String stringMSp = getString(R.string.spin);
-	    private String pseudo="Aurelien";
 	    
 		public MyAccesDB3(ListeRoomUtilisateur pActivity)
 		{
@@ -136,12 +138,13 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
                     }  
                     try
                     {
-
-                    		liste= UtilisateurRoomDB.readRoom(pseudo);
-                            for(int i=0; i<liste.size();i++)
-                            {
-                            	Log.d("ELEMENT","Elt"+i+"est: "+liste.get(i));
-                            }
+                      	Intent in = getIntent();
+                      	pseudo= in.getStringExtra("pseudo");
+                		liste= UtilisateurRoomDB.readRoom(pseudo);
+                        for(int i=0; i<liste.size();i++)
+                        {
+                        	Log.d("ELEMENT","Elt"+i+"est: "+liste.get(i));
+                        }
 
 
                     }
@@ -172,7 +175,25 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 
 										@Override
 										public void onClick(View v) {
-											
+											  int ro=-1;
+											  SparseBooleanArray elts=list.getCheckedItemPositions();
+											  for(int i=0;i<liste.size();i++){
+												  if(elts.get(i)){
+													  ro=i;
+													  break;
+												  }
+											  }
+											  if(ro>0){
+												  Intent i = new Intent(ListeRoomUtilisateur.this,InterieurRoom.class);
+												  i.putExtra("pseudo",pseudo);
+												  i.putExtra("idroom", ro);
+												  startActivity(i);
+												  finish();
+												  setContentView(R.layout.activity_creer_room3);
+											  }
+											  else{
+												  //toast d'erreur
+											  }
 										}
 				    		});
 					 }
