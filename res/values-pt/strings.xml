@@ -26,5 +26,7 @@
 	<string name="vous"> Você disse : </string>
 	<string name="autre"> disse : </string>
 	<string name="boutonenvoi"> enviando</string>
+	<string name="prob"> Ocorreu um problema ao enviar a mensagem </string>
+	<string name="prob2"> Ocorreu um problema quando a mensagem é recebida</string>
 	
 </resources>

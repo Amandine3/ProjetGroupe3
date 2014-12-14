@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.view.View.OnClickListener;
 
 public class InterieurRoom extends ActionBarActivity{
@@ -47,6 +48,14 @@ public class InterieurRoom extends ActionBarActivity{
 		setContentView(R.layout.activity_liste_roomut);
 		Log.d("BBB","BBB");
 		//récupérer les pseudo et idroom
+		/*
+		 * MainActivity intent de pseudo
+		 * a transmettre de truc en truc... 
+		 * quand besoin recuperer i.putExtra + faire passer apres
+		 * 
+		 * ou sont les méthodes post execute et pre execute ?
+		 * 
+		 */
 		r = new Reception(InterieurRoom.this);
 		envoi=(Button)findViewById(R.id.boutonenvoi);
 		envoi.setOnClickListener(
@@ -145,7 +154,8 @@ public class InterieurRoom extends ActionBarActivity{
 				mess.create();
 			}
 			catch(Exception e){
-				//creer un toast disant qu'il y a eu un probleme lors de l'envoi du message
+
+				Toast.makeText(InterieurRoom.this, R.string.prob , Toast.LENGTH_SHORT).show();
 			}
 			return null;
 		}
@@ -188,7 +198,9 @@ public class InterieurRoom extends ActionBarActivity{
 				}
 			}
 			catch(Exception e){
-				//creer un toast disant qu'il y a eu un probleme lors de l'envoi du message
+
+				Toast.makeText(InterieurRoom.this, R.string.prob2 , Toast.LENGTH_SHORT).show();
+				
 			}
 			return null;
 		}

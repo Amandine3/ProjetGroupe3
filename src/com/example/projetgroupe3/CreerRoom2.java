@@ -33,11 +33,27 @@ public class CreerRoom2 extends ActionBarActivity
 	private RoomDB ro;
 	private String pseudo; 
 	private ListView list=null;
+	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_creer_room2);
+		
+	      try{
+          	
+          	Intent in = getIntent();
+          	pseudo= in.getStringExtra("pseudo");
+          	Log.d(" ! pseudo CREEROOM 2 ! ", pseudo);
+          }
+                   	
+          
+          catch(Exception e)
+          {
+          	Log.d("recuperation du pseudo CREERROOM2", "ECHOUEEE");
+          }
+
 		 MyAccesDB adb = new MyAccesDB(CreerRoom2.this);
          adb.execute();
 	}
@@ -137,10 +153,28 @@ public class CreerRoom2 extends ActionBarActivity
                             {
                             	Log.d("ELEMENT","Elt"+i+"est: "+liste.get(i));
                             }
-
-                            pseudo="Aurelien"; //pseudo en dur pour l'instant
-				        	ro=new RoomDB(pseudo);
-				        	ro.create();
+/*Thomas 
+ * try{
+			Intent i=getIntent();			
+			id = Integer.parseInt(i.getStringExtra("sendid2"));
+			Log.d("MAdmin get i",""+id);
+			list = i.getParcelableExtra(MainActivity.LISTDEP);
+			Log.d("MAdmin get i","liste ok");
+		}catch(Exception ex){
+			Log.d("Test Intend MAdmin",""+ex.getMessage());
+		}
+ */
+               
+                            	Log.d("le pseudo c'est :"+pseudo, "OK");
+                            	 //pseudo="Aurelien"; //pseudo en dur pour l'instant
+    				        	ro=new RoomDB(pseudo);
+    				        	ro.create();
+                            	
+                           
+                            
+                           
+				        	
+				        	
 
                     }
                     catch(Exception e)

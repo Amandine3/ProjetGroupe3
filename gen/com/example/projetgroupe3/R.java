@@ -1293,6 +1293,8 @@ containing a value of this type.
         public static final int messms=0x7f0a001a;
         public static final int msg1=0x7f0a0018;
         public static final int pasEnCours=0x7f0a0017;
+        public static final int prob=0x7f0a0026;
+        public static final int prob2=0x7f0a0027;
         public static final int spin=0x7f0a001f;
         public static final int textview1=0x7f0a0011;
         public static final int textview1RU=0x7f0a001c;

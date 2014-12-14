@@ -15,6 +15,7 @@ public class MainActivity extends ActionBarActivity
 
 	Button bouton1=null;
 	Button bouton2 = null;
+	String pseudo="Aurelien";//en dur pour l'instant
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -31,7 +32,9 @@ public class MainActivity extends ActionBarActivity
 
 						
 						Intent i = new Intent(MainActivity.this,ListeRoomUtilisateur.class);
+					    i.putExtra("pseudo", pseudo);
 						startActivity(i);
+						finish();
 					
 					}
 				  }
@@ -44,7 +47,9 @@ public class MainActivity extends ActionBarActivity
 
 						
 						Intent i = new Intent(MainActivity.this,CreerRoom.class);
+					    i.putExtra("pseudo", pseudo);
 						startActivity(i);
+						finish();
 					
 					}
 				  }

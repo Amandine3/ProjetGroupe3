@@ -3,6 +3,7 @@ package com.example.projetgroupe3;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ public class CreerRoom extends ActionBarActivity
 
 	Button boutonOk=null;
 	Button bannuler = null;
+	private String pseudo;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -28,11 +30,24 @@ public class CreerRoom extends ActionBarActivity
 				new OnClickListener(){
 					
 					public void onClick(View v){
+					     try{
+					          	
+					          	Intent in = getIntent();
+					          	pseudo= in.getStringExtra("pseudo");
+					          	Log.d("Pseudo de CREERROOM",pseudo);
+					          }
+					                   	
+					          
+					          catch(Exception e)
+					          {
+					          	Log.d("recuperation du pseudo CREERROOM ", "ECHOUEEE");
+					          }
 
 						
 						Intent i = new Intent(CreerRoom.this,CreerRoom2.class);
+						i.putExtra("pseudo",pseudo);
 						startActivity(i);
-					
+						finish();
 					}
 				  }
 				);
