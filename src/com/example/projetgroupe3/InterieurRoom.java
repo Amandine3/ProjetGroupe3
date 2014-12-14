@@ -54,14 +54,20 @@ public class InterieurRoom extends ActionBarActivity{
 
 					@Override
 					public void onClick(View v) {
-						Envoi e=new Envoi(InterieurRoom.this);
+						e=new Envoi(InterieurRoom.this);
 						e.execute();
 					}
 					
 				});
+		list = (ListView) findViewById(R.id.listView1);
+		ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_multiple_choice,liste);
+		list.setAdapter(adapter);
+		r.execute();
+		list.invalidateViews();
 		new Timer().schedule(new TimerTask(){
 		public void run(){
 			r.execute();
+			list.invalidateViews();
 		}
 		}, new Date(), 20000);
 
@@ -186,13 +192,5 @@ public class InterieurRoom extends ActionBarActivity{
 			}
 			return null;
 		}
-		protected void onPostExecute(){
-			list=(ListView)findViewById(R.id.listView1);
-			//faire que la liste s'affiche depuis la fin -_- et faire qu'on peut pas cocher
-			//Manque la redirection dans listeRoomUtilisateur et peut être changer les contenus des resultat afin de les traduire :'(
-			ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_single_choice, liste);
-			list.setAdapter(adapter);
-		}
 	}
-
 }
