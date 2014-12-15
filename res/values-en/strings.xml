@@ -28,5 +28,6 @@
 	<string name="boutonenvoi"> sending</string>
 	<string name="prob"> A problem occurred while sending the message </string>
 	<string name="prob2"> A problem occurred while receiving the message </string>
-	
+	<string name="err"> Error ! </string>
+	<string name="title_activity_msg_room"> Join a room </string>
 </resources>

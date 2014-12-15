@@ -310,7 +310,7 @@ public class CreerRoom2 extends ActionBarActivity
 					  i.putExtra("idroom", ro.getIdRoom());
 					  startActivity(i);
 					  finish();
-					  setContentView(R.layout.activity_creer_room3);
+					  setContentView(R.layout.activity_msg_room);
 					  
 				}
 	}

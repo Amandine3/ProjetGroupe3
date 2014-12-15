@@ -1288,6 +1288,7 @@ containing a value of this type.
         public static final int boutonenvoi=0x7f0a0025;
         public static final int button1=0x7f0a0016;
         public static final int contsms=0x7f0a001b;
+        public static final int err=0x7f0a0028;
         public static final int hello_world=0x7f0a000e;
         public static final int message=0x7f0a0019;
         public static final int messms=0x7f0a001a;
@@ -1303,6 +1304,7 @@ containing a value of this type.
         public static final int title_activity_creer_room=0x7f0a0010;
         public static final int title_activity_creer_room2=0x7f0a0014;
         public static final int title_activity_liste_roomut=0x7f0a0020;
+        public static final int title_activity_msg_room=0x7f0a0029;
         public static final int vous=0x7f0a0023;
     }
     public static final class style {

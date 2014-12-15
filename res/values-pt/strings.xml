@@ -28,5 +28,6 @@
 	<string name="boutonenvoi"> enviando</string>
 	<string name="prob"> Ocorreu um problema ao enviar a mensagem </string>
 	<string name="prob2"> Ocorreu um problema quando a mensagem é recebida</string>
-	
+	<string name="err"> Erro ! </string>
+	<string name="title_activity_msg_room"> Junte-se a sala </string>
 </resources>

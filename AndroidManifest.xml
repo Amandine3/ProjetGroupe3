@@ -39,6 +39,10 @@
             android:name=".ListeRoomUtilisateur"
             android:label="@string/title_activity_liste_roomut" >
         </activity>
+           <activity
+            android:name=".InterieurRoom"
+            android:label="@string/title_activity_msg_room" >
+        </activity>
     </application>
 
 </manifest>
