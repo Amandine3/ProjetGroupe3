@@ -14,6 +14,7 @@ import com.example.projetgroupe3.ListeRoomUtilisateur.MyAccesDB3;
 import ClassesDB.MessageDB;
 import ClassesDB.RoomDB;
 import ClassesDB.UtilisateurRoomDB;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -84,26 +85,19 @@ public class InterieurRoom extends ActionBarActivity{
 				});
 		Log.d("R.exec", "r");
 		r.execute();
-		list = (ListView) findViewById(R.id.listMsg);
-		Log.d("list", "list");
-		ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_multiple_choice,liste);
-		Log.d("arrayAd","arrayAD");
-		list.setAdapter(adapter);
-		Log.d("list adapt", "dedans");
+
 
 		Log.d("execute r", "reception");
-		list.invalidateViews();
 		Log.d("vald", "vald");
-		new Timer().schedule(new TimerTask()
+	/*	new Timer().schedule(new TimerTask()
 		{
 		public void run(){
 			Log.d("run time", "run");
 			r.execute();
 			Log.d("run + exec", "run +");
-			list.invalidateViews();
 			Log.d("inv view", "dedans");
 		}
-		}, new Date(), 20000);
+		}, new Date(), 20000);*/
 
 	}
 
@@ -145,6 +139,7 @@ public class InterieurRoom extends ActionBarActivity{
 		return super.onOptionsItemSelected(item);
 	}
 	class Envoi extends AsyncTask<String,Integer,Boolean>{
+		private MessageDB mess;
 		public Envoi(InterieurRoom pActivity)
 		{
 			Log.d("Dans ENVOI IntROOm CONSTRUCTEUR", "dedans1");
@@ -157,6 +152,14 @@ public class InterieurRoom extends ActionBarActivity{
 			// TODO Auto-generated method stub
 			Log.d("Dans LINK de IntROOm", "dedans2");
 
+
+		}
+		protected void onPreExecute()
+		{
+			Log.d("Dans pre", "ok");
+            editText = (EditText) findViewById(R.id.editText1);
+			mess=new MessageDB(editText.getText().toString(), idroom, pseudo);
+			Log.d("Fin du pre", "ok jusque ici"+editText.getText().toString());
 
 		}
 		@Override
@@ -177,13 +180,12 @@ public class InterieurRoom extends ActionBarActivity{
                     MessageDB.setConnection(con);
             
             }
-            editText = (EditText) findViewById(R.id.editText1);
-			MessageDB mess=new MessageDB(editText.getText().toString(), idroom, pseudo);
-			try{
+            Log.d("Apres changement con", "Ok encore");
+            try{
 				mess.create();
 			}
 			catch(Exception e){
-
+				e.printStackTrace();
 				Toast.makeText(InterieurRoom.this, R.string.prob , Toast.LENGTH_SHORT).show();
 			}
 			return null;
@@ -223,23 +225,49 @@ public class InterieurRoom extends ActionBarActivity{
             
             }
 			try{
+				Log.d("Appel", "avant appel");
 				mess=RoomDB.getMessageRoom(idroom);
-				for (int i=0;i<mess.size();i++){
-					if(!mess.get(i).getPseudo().equals(pseudo)){
-						liste.add(mess.get(i).getPseudo()+R.string.autre+mess.get(i).getContenu());
-					}
-					else{
-						liste.add(mess.get(i).getPseudo()+R.string.vous+mess.get(i).getContenu());
-					}
-					liste.add("----------------");
-				}
 			}
 			catch(Exception e){
 
 				Toast.makeText(InterieurRoom.this, R.string.prob2 , Toast.LENGTH_SHORT).show();
-				
+				return false;
 			}
-			return null;
+			Log.d("Findoin", "Fin");
+			return true;
+		}
+		protected void onPostExecute(Boolean result){
+			  super.onPostExecute(result);
+			  if(result){
+			Log.d("Dans le post", "ppopopop");
+			String m;
+			liste=new ArrayList<String>();
+			for (int i=0;i<mess.size();i++){
+				Log.d("Debut de la boucle", "debut");
+				if(!mess.get(i).getPseudo().equals(pseudo)){
+					Log.d("Dans la boucle", "cas 1dfghjkli!uytfdert");
+					m=mess.get(i).getPseudo()+R.string.autre+mess.get(i).getContenu();
+					Log.d("ZD", m);
+					liste.add(m);
+					Log.d("suite", "susdf");
+				}
+				else{
+					Log.d("Dans la boucle", "cas 2");
+					m=mess.get(i).getPseudo()+R.string.vous+mess.get(i).getContenu();
+					liste.add(m);
+				}
+				liste.add("----------------");
+				Log.d("Fin de la boucle", "fin");
+			}
+			Log.d("Apres la boucle", "toujours bon");
+			list = (ListView) findViewById(R.id.listMsg);
+			Log.d("list", "list");
+			ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_multiple_choice,liste);
+			Log.d("arrayAd","arrayAD");
+			list.setAdapter(adapter);
+			Log.d("list adapt", "dedans");
+			Log.d("execute r", "reception");
+			  }
 		}
 	}
 }
