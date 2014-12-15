@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
@@ -40,14 +41,15 @@ public class InterieurRoom extends ActionBarActivity{
 	private ArrayList<String> liste;
 	private String pseudo;
 	private int idroom;
+	private EditText editText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d("AAA","AAA");
+		Log.d("AAA INTERIEUR ROOM ","AAA");
 		setContentView(R.layout.activity_liste_roomut);
-		Log.d("BBB","BBB");
+		Log.d("BBB INTERIEUR ROOM ","BBB");
 		//récupérer les pseudo et idroom
 		/*
 		 * MainActivity intent de pseudo
@@ -58,17 +60,25 @@ public class InterieurRoom extends ActionBarActivity{
 		 * 
 		 */
       	Intent in = getIntent();
+      	Log.d("Intent interieur Room", "intent");
       	pseudo= in.getStringExtra("pseudo");
+     	Log.d("Pseudo Interieur Room ::", pseudo);
       	idroom=in.getIntExtra("idroom", -1);
+     	Log.d("Idroom interieur Room", "la la "+ idroom);
 		r = new Reception(InterieurRoom.this);
+	 	Log.d("r interieur Room", "li li " + r);
 		envoi=(Button)findViewById(R.id.boutonenvoi);
+	 	Log.d("bouton envoie", "envoi");
 		envoi.setOnClickListener(
 				new OnClickListener(){
 
 					@Override
 					public void onClick(View v) {
+						Log.d("bouton envoie 22", "envoi");
 						e=new Envoi(InterieurRoom.this);
+						Log.d("bouton envoie 33 " , "envoi");
 						e.execute();
+						Log.d("bouton envoie 44 exec ", "envoi");
 					}
 					
 				});
@@ -153,7 +163,8 @@ public class InterieurRoom extends ActionBarActivity{
                     MessageDB.setConnection(con);
             
             }
-			MessageDB mess=new MessageDB("Ce qu'il y a dans le textfield", idroom, pseudo);
+            editText = (EditText) findViewById(R.id.editText1);
+			MessageDB mess=new MessageDB(editText.getText().toString(), idroom, pseudo);
 			try{
 				mess.create();
 			}

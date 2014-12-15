@@ -45,9 +45,9 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d("AAA","AAA");
+		Log.d("LISTE ROOM UTI","AAA");
 		setContentView(R.layout.activity_liste_roomut);
-		Log.d("BBB","BBB");
+		Log.d("LISTE ROOM UTI","BBB");
 		Intent in = getIntent();
       	pseudo= in.getStringExtra("pseudo");
 
