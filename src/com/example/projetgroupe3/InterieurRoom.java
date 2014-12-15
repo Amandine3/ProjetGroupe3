@@ -48,7 +48,7 @@ public class InterieurRoom extends ActionBarActivity{
 	{
 		super.onCreate(savedInstanceState);
 		Log.d("AAA INTERIEUR ROOM ","AAA");
-		setContentView(R.layout.activity_liste_roomut);
+		setContentView(R.layout.activity_msg_room);
 		Log.d("BBB INTERIEUR ROOM ","BBB");
 		//récupérer les pseudo et idroom
 		/*
@@ -82,15 +82,26 @@ public class InterieurRoom extends ActionBarActivity{
 					}
 					
 				});
-		list = (ListView) findViewById(R.id.listView1);
-		ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_multiple_choice,liste);
-		list.setAdapter(adapter);
+		Log.d("R.exec", "r");
 		r.execute();
+		list = (ListView) findViewById(R.id.listMsg);
+		Log.d("list", "list");
+		ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_multiple_choice,liste);
+		Log.d("arrayAd","arrayAD");
+		list.setAdapter(adapter);
+		Log.d("list adapt", "dedans");
+
+		Log.d("execute r", "reception");
 		list.invalidateViews();
-		new Timer().schedule(new TimerTask(){
+		Log.d("vald", "vald");
+		new Timer().schedule(new TimerTask()
+		{
 		public void run(){
+			Log.d("run time", "run");
 			r.execute();
+			Log.d("run + exec", "run +");
 			list.invalidateViews();
+			Log.d("inv view", "dedans");
 		}
 		}, new Date(), 20000);
 
@@ -136,7 +147,7 @@ public class InterieurRoom extends ActionBarActivity{
 	class Envoi extends AsyncTask<String,Integer,Boolean>{
 		public Envoi(InterieurRoom pActivity)
 		{
-
+			Log.d("Dans ENVOI IntROOm CONSTRUCTEUR", "dedans1");
 			link(pActivity);
 			// TODO Auto-generated constructor stub
 		}
@@ -144,16 +155,19 @@ public class InterieurRoom extends ActionBarActivity{
 		private void link(InterieurRoom pActivity)
 		{
 			// TODO Auto-generated method stub
+			Log.d("Dans LINK de IntROOm", "dedans2");
 
 
 		}
 		@Override
 		protected Boolean doInBackground(String... params) {
+			Log.d("Dans DOIN de IntROOm", "dedans3");
             if(con==null)
             {
                     con = new DBConnection().getConnection();
                     if(con==null)
                     {
+                    	Log.d("Dans DOIN de IntROOm - if1", "dedans");
                             resultat = "ECHEC de la connexion";
                             Log.d("Con","Problème Connexion");
                             return false;
@@ -179,6 +193,7 @@ public class InterieurRoom extends ActionBarActivity{
 		public Reception(InterieurRoom pActivity)
 		{
 
+			Log.d("Dans RECEPTION de IntROOm", "dedans");
 			link(pActivity);
 			// TODO Auto-generated constructor stub
 		}
@@ -186,11 +201,13 @@ public class InterieurRoom extends ActionBarActivity{
 		private void link(InterieurRoom pActivity)
 		{
 			// TODO Auto-generated method stub
+			Log.d("Reception link", "dedans");
 
 
 		}
 		@Override
 		protected Boolean doInBackground(String... params) {
+			Log.d("Dans DOIN de RECEPTION IntROOm", "dedans");
             if(con==null)
             {
                     con = new DBConnection().getConnection();
