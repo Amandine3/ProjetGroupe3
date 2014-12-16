@@ -39,7 +39,7 @@ public class InterieurRoom extends ActionBarActivity{
 	private Reception r;
 	private ArrayList<MessageDB> mess;
 	private String resultat;
-	private ArrayList<String> liste;
+	private ArrayList<String> liste=new ArrayList<String>();
 	private String pseudo;
 	private int idroom;
 	private EditText editText;
@@ -66,11 +66,7 @@ public class InterieurRoom extends ActionBarActivity{
      	Log.d("Pseudo Interieur Room ::", pseudo);
       	idroom=in.getIntExtra("idroom", -1);
      	Log.d("Idroom interieur Room", "la la "+ idroom);
-		list = (ListView) findViewById(R.id.listMsg);
-		Log.d("list", "list");
-		ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_1,liste);
-		Log.d("arrayAd","arrayAD");
-		list.setAdapter(adapter);
+
 		r = new Reception(InterieurRoom.this);
 	 	Log.d("r interieur Room", "li li " + r);
 		envoi=(Button)findViewById(R.id.boutonenvoi);
@@ -84,6 +80,7 @@ public class InterieurRoom extends ActionBarActivity{
 						e=new Envoi(InterieurRoom.this);
 						Log.d("bouton envoie 33 " , "envoi");
 						e.execute();
+						
 						Log.d("bouton envoie 44 exec ", "envoi");
 					}
 					
@@ -99,6 +96,7 @@ public class InterieurRoom extends ActionBarActivity{
 		public void run(){
 			Log.d("run time", "run");
 			if(r.getStatus()==AsyncTask.Status.FINISHED){
+				r=new Reception(InterieurRoom.this);
 				r.execute();
 				Log.d("run + exec", "run +");
 				Log.d("inv view", "dedans");
@@ -192,10 +190,11 @@ public class InterieurRoom extends ActionBarActivity{
             Log.d("Apres changement con", "Ok encore");
             try{
 				mess.create();
+				editText.setText("");
 			}
 			catch(Exception e){
 				e.printStackTrace();
-				Toast.makeText(InterieurRoom.this, R.string.prob , Toast.LENGTH_SHORT).show();
+				Toast.makeText(InterieurRoom.this, getString(R.string.prob) , Toast.LENGTH_SHORT).show();
 			}
 			return null;
 		}
@@ -238,7 +237,7 @@ public class InterieurRoom extends ActionBarActivity{
 			}
 			catch(Exception e){
 
-				Toast.makeText(InterieurRoom.this, R.string.prob2 , Toast.LENGTH_SHORT).show();
+				Toast.makeText(InterieurRoom.this, getString(R.string.prob2) , Toast.LENGTH_SHORT).show();
 				return false;
 			}
 			Log.d("Findoin", "Fin");
@@ -254,23 +253,29 @@ public class InterieurRoom extends ActionBarActivity{
 				Log.d("Debut de la boucle", "debut");
 				if(!mess.get(i).getPseudo().equals(pseudo)){
 					Log.d("Dans la boucle", "cas 1dfghjkli!uytfdert");
-					m=mess.get(i).getPseudo()+R.string.autre+mess.get(i).getContenu();
+					m=" "+mess.get(i).getPseudo()+getString(R.string.autre)+" "+mess.get(i).getContenu();
 					Log.d("ZD", m);
 					liste.add(m);
 					Log.d("suite", "susdf");
 				}
 				else{
 					Log.d("Dans la boucle", "cas 2");
-					m=mess.get(i).getPseudo()+R.string.vous+mess.get(i).getContenu();
+					m=" "+getString(R.string.vous)+" "+mess.get(i).getContenu();
 					liste.add(m);
 				}
 				liste.add("----------------");
 				Log.d("Fin de la boucle", "fin");
 			}
-			Log.d("Apres la boucle", "toujours bon");
-			list.invalidateViews();
-			Log.d("list adapt", "dedans");
-			Log.d("execute r", "reception");
+			if(mess.size()!=0){
+				Log.d("Apres la boucle", "toujours bon");
+				list = (ListView) findViewById(R.id.listMsg);
+				Log.d("list", "list");
+				ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_1,liste);
+				Log.d("arrayAd","arrayAD");
+				list.setAdapter(adapter);			Log.d("list adapt", "dedans");
+				Log.d("execute r", "reception");
+
+			}
 			  }
 		}
 	}
