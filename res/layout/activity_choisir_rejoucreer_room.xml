@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:background="@drawable/y4yvedyp">
+    android:background="@drawable/y4yvedyp">
 
     <Button
         android:id="@+id/boutonA"
@@ -21,7 +21,7 @@
         android:layout_above="@+id/boutonA"
         android:layout_alignLeft="@+id/boutonA"
         android:layout_alignRight="@+id/boutonA"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="55sp"
         android:layout_weight="1"
         android:background="@color/darker_gray"
         android:text="@string/boutonB" />

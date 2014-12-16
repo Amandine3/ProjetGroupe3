@@ -45,7 +45,6 @@ public class CreerRoom2 extends ActionBarActivity
           	
           	Intent in = getIntent();
           	pseudo= in.getStringExtra("pseudo");
-          	Log.d(" ! pseudo CREEROOM 2 ! ", pseudo);
           }
                    	
           
@@ -154,29 +153,9 @@ public class CreerRoom2 extends ActionBarActivity
                             {
                             	Log.d("ELEMENT","Elt"+i+"est: "+liste.get(i));
                             }
-/*Thomas 
- * try{
-			Intent i=getIntent();			
-			id = Integer.parseInt(i.getStringExtra("sendid2"));
-			Log.d("MAdmin get i",""+id);
-			list = i.getParcelableExtra(MainActivity.LISTDEP);
-			Log.d("MAdmin get i","liste ok");
-		}catch(Exception ex){
-			Log.d("Test Intend MAdmin",""+ex.getMessage());
-		}
- */
-               
-                            	Log.d("le pseudo c'est :"+pseudo, "OK");
-                            	 //pseudo="Aurelien"; //pseudo en dur pour l'instant
-    				        	ro=new RoomDB(pseudo);
-    				        	ro.create();
-                            	
-                           
-                            
-                           
-				        	
-				        	
 
+    				        ro=new RoomDB(pseudo);
+    				        ro.create();
                     }
                     catch(Exception e)
                     {
@@ -186,8 +165,6 @@ public class CreerRoom2 extends ActionBarActivity
                     }
                     return true; 
                   }
-				
-					
 
 				protected void onPostExecute(Boolean result)
 				{

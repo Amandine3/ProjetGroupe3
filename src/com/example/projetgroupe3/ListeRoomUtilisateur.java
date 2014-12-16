@@ -45,13 +45,10 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d("LISTE ROOM UTI","AAA");
 		setContentView(R.layout.activity_liste_roomut);
-		Log.d("LISTE ROOM UTI","BBB");
 		Intent in = getIntent();
       	pseudo= in.getStringExtra("pseudo");
-
-      	
+     	
 
 		MyAccesDB3 adb = new MyAccesDB3(ListeRoomUtilisateur.this);
         adb.execute();
@@ -180,34 +177,25 @@ public class ListeRoomUtilisateur extends ActionBarActivity{
 
 										@Override
 										public void onClick(View v) {
-											Log.d("Chouette A", "A");
 											  int ro=-1;
-											  Log.d("Chouette B", "B");
 											  SparseBooleanArray elts=list.getCheckedItemPositions();
-											  Log.d("Chouette C", "C");
+
 											  for(int i=0;i<liste.size();i++){
-												  Log.d("Chouette D boucle", "D");
+
 												  if(elts.get(i)){
-													  Log.d("Chouette E if ", "E");
+
 													  ro=liste.get(i);
-													  Log.d("Chouette F", "F");
 													  break;
 		
 												  }
 											  }
-											  Log.d("Chouette G fin for", "G");
 											  if(ro>0){
-												  Log.d("Chouette H if ro>0", "H");
+
 												  Intent it = new Intent(ListeRoomUtilisateur.this,InterieurRoom.class);
-												  Log.d("ChouetteI intent", "I");
 												  it.putExtra("pseudo",pseudo);
-												  Log.d("Chouette J", "J");
 												  it.putExtra("idroom", ro);
-												  Log.d("Chouette K", "K");
 												  startActivity(it);
-												  Log.d("Chouette L", "L");
 												  //finish();
-												  Log.d("Chouette M content view", "M");
 												  setContentView(R.layout.activity_msg_room);
 											  }
 											  
