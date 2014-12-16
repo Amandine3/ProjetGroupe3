@@ -140,11 +140,12 @@ public class CreerRoom2 extends ActionBarActivity
                             }
                             Log.d("Con","Connexion OK");
                            
-                            UtilisateurRoomDB.setConnection(con);
-                            UtilisateurDB.setConnection(con);
-                            RoomDB.setConnection(con);
+
                     
                     }  
+                    UtilisateurRoomDB.setConnection(con);
+                    UtilisateurDB.setConnection(con);
+                    RoomDB.setConnection(con);
                     try
                     {
 

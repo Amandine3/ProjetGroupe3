@@ -66,6 +66,11 @@ public class InterieurRoom extends ActionBarActivity{
      	Log.d("Pseudo Interieur Room ::", pseudo);
       	idroom=in.getIntExtra("idroom", -1);
      	Log.d("Idroom interieur Room", "la la "+ idroom);
+		list = (ListView) findViewById(R.id.listMsg);
+		Log.d("list", "list");
+		ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_1,liste);
+		Log.d("arrayAd","arrayAD");
+		list.setAdapter(adapter);
 		r = new Reception(InterieurRoom.this);
 	 	Log.d("r interieur Room", "li li " + r);
 		envoi=(Button)findViewById(R.id.boutonenvoi);
@@ -89,15 +94,18 @@ public class InterieurRoom extends ActionBarActivity{
 
 		Log.d("execute r", "reception");
 		Log.d("vald", "vald");
-	/*	new Timer().schedule(new TimerTask()
+	    new Timer().schedule(new TimerTask()
 		{
 		public void run(){
 			Log.d("run time", "run");
-			r.execute();
-			Log.d("run + exec", "run +");
-			Log.d("inv view", "dedans");
+			if(r.getStatus()==AsyncTask.Status.FINISHED){
+				r.execute();
+				Log.d("run + exec", "run +");
+				Log.d("inv view", "dedans");
+			}else
+				Log.d("Tourne", "Tourne encore");
 		}
-		}, new Date(), 20000);*/
+		}, new Date(), 20000);
 
 	}
 
@@ -221,10 +229,9 @@ public class InterieurRoom extends ActionBarActivity{
                             return false;
                     }
                     Log.d("Con","Connexion OK");
-
-                    RoomDB.setConnection(con);
             
             }
+            RoomDB.setConnection(con);
 			try{
 				Log.d("Appel", "avant appel");
 				mess=RoomDB.getMessageRoom(idroom);
@@ -261,11 +268,7 @@ public class InterieurRoom extends ActionBarActivity{
 				Log.d("Fin de la boucle", "fin");
 			}
 			Log.d("Apres la boucle", "toujours bon");
-			list = (ListView) findViewById(R.id.listMsg);
-			Log.d("list", "list");
-			ArrayAdapter<String> adapter = new  ArrayAdapter<String>(InterieurRoom.this,android.R.layout.simple_list_item_multiple_choice,liste);
-			Log.d("arrayAd","arrayAD");
-			list.setAdapter(adapter);
+			list.invalidateViews();
 			Log.d("list adapt", "dedans");
 			Log.d("execute r", "reception");
 			  }
