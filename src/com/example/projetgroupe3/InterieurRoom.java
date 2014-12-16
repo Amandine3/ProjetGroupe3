@@ -159,7 +159,7 @@ public class InterieurRoom extends ActionBarActivity{
 			Log.d("Dans pre", "ok");
             editText = (EditText) findViewById(R.id.editText1);
 			mess=new MessageDB(editText.getText().toString(), idroom, pseudo);
-			Log.d("Fin du pre", "ok jusque ici"+editText.getText().toString());
+			Log.d("Fin du pre", "ok jusque ici"+editText.getText().toString()+ " "+ pseudo+ " idroom "+idroom);
 
 		}
 		@Override
@@ -177,9 +177,10 @@ public class InterieurRoom extends ActionBarActivity{
                     }
                     Log.d("Con","Connexion OK");
 
-                    MessageDB.setConnection(con);
+                    
             
             }
+            MessageDB.setConnection(con);
             Log.d("Apres changement con", "Ok encore");
             try{
 				mess.create();

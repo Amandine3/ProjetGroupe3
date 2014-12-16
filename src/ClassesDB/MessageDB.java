@@ -92,17 +92,27 @@ public class MessageDB extends Message implements CRUD
             try
             {          
                  String query="call createMessage(?,?,?,?)"; 
+                 System.out.println(query);
                  cstmt = dbConnect.prepareCall(query);
+                 System.out.println("Apres CSTMT");
 				 cstmt.setString(1, pseudo);
+				 System.out.println("Pseudo : " + pseudo);
 				 cstmt.setInt(2,idRoom);
+				 System.out.println("IDROOM : " + idRoom);
 				 cstmt.setString(3, contenu);
+				 System.out.println("CONTENU : " + contenu);
 				 cstmt.registerOutParameter(4, java.sql.Types.INTEGER);
+				 System.out.println("Avant exec update");
 				 cstmt.executeUpdate();
+				 System.out.println("Apres executeUpdate");
 			     this.idmessage=cstmt.getInt(4);
+			     System.out.println("IDMESSage : " + idmessage);
             }
             catch(Exception e)
             {
+            	e.printStackTrace();
                 throw new Exception("Erreur lors de la création"+e.getMessage());
+                
             }
             finally
             {
