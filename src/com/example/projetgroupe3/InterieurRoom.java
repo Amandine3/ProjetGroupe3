@@ -190,13 +190,24 @@ public class InterieurRoom extends ActionBarActivity{
             Log.d("Apres changement con", "Ok encore");
             try{
 				mess.create();
-				editText.setText("");
+
 			}
 			catch(Exception e){
 				e.printStackTrace();
-				Toast.makeText(InterieurRoom.this, getString(R.string.prob) , Toast.LENGTH_SHORT).show();
+
+				return false;
 			}
-			return null;
+			return true;
+		}
+		protected void onPostExecute(Boolean result){
+			  super.onPostExecute(result);
+			  if(result){
+				  editText.setText("");
+			  }
+			  else{
+					Toast.makeText(InterieurRoom.this, getString(R.string.prob) , Toast.LENGTH_SHORT).show();
+
+			  }
 		}
 	}
 	class Reception extends AsyncTask<String,Integer,Boolean>{
@@ -236,8 +247,6 @@ public class InterieurRoom extends ActionBarActivity{
 				mess=RoomDB.getMessageRoom(idroom);
 			}
 			catch(Exception e){
-
-				Toast.makeText(InterieurRoom.this, getString(R.string.prob2) , Toast.LENGTH_SHORT).show();
 				return false;
 			}
 			Log.d("Findoin", "Fin");
@@ -276,6 +285,9 @@ public class InterieurRoom extends ActionBarActivity{
 				Log.d("execute r", "reception");
 
 			}
+			}
+			  else{
+					Toast.makeText(InterieurRoom.this, getString(R.string.prob2) , Toast.LENGTH_SHORT).show();
 			  }
 		}
 	}
