@@ -23,8 +23,8 @@
 	<string name="title_activity_liste_roomut"> Rejoindre une room</string>
 	<string name="boutonVal"> valider </string>
 	<string name="textviewEnt"> Entrez ici votre message : </string>
-	<string name="vous"> Vous avez dit : </string>
-	<string name="autre"> a dit : </string>
+	<string name="vous">  Vous avez dit :  </string>
+	<string name="autre">  a dit :  </string>
 	<string name="boutonenvoi"> envoi</string>
 	<string name="prob"> Un problème est survenu lors de l\'envoi du message </string>
 	<string name="prob2">Un problème est survenu lors de la réception du message</string>
