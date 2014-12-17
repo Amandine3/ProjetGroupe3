@@ -11,6 +11,50 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1RU"
         android:layout_below="@+id/textView1RU"
+        android:layout_marginTop="105sp"
+        android:scrollbars="vertical" 
+        android:layout_weight="1"
+        android:choiceMode="singleChoice">
+    </ListView>
+
+    <Button
+        android:id="@+id/boutonVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textview1RU"
+        android:layout_marginRight="15sp"
+        android:background="@color/darker_gray"
+        android:text="@string/boutonVal" />
+
+    <TextView
+        android:id="@+id/textview1RU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="18dp"
+        android:layout_toLeftOf="@+id/boutonVal"
+        android:layout_weight="1"
+        android:text="@string/textview1RU" />
+    
+</RelativeLayout>
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/y4yvedyp"
+    tools:context="com.example.projetgroupe3.ListeRoomUtilisateur">
+    
+    
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1RU"
+        android:layout_below="@+id/textView1RU"
         android:layout_marginTop="70sp"
         android:scrollbars="vertical" 
         android:choiceMode="singleChoice"
@@ -39,4 +83,4 @@
         android:background="@color/darker_gray"
         android:text="@string/boutonVal" />
     
-</RelativeLayout>
+</RelativeLayout>-->
